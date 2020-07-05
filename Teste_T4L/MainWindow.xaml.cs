@@ -28,9 +28,9 @@ namespace Teste_T4L
         {
             InitializeComponent();
 
+            // Carregar itens no combobox
             try
             {
-                //MySqlConnection conect = new MySqlConnection("Server=localhost;Database=testdev;Uid=root;Pwd=123456;");
                 Conexao conect = new Conexao();
                 string selectQuery = "SELECT * FROM produto_grupo";
                 MySqlCommand command = new MySqlCommand(selectQuery, conect.conectar());
@@ -38,7 +38,7 @@ namespace Teste_T4L
 
                 while(reader.Read())
                 {
-                    cbxGrupoProduto.Items.Add(reader.GetString("nome"));
+                    cbxGrupoProduto.Items.Add(reader.GetString("cod"));
                 }
                 
             }
@@ -48,22 +48,38 @@ namespace Teste_T4L
             }
         }
 
-        //Método limpar campo
+        //Método para limpar os campos
         public void Limpar()
         {
             txtDesc.Clear();
             txtCodBarra.Clear();
             txtPrecoCusto.Clear();
             txtPrecoVenda.Clear();
+            
         }
 
+        //Botao Cadastar
         private void btnCadastrar_Click_1(object sender, RoutedEventArgs e)
         {
-            CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, cbxGrupoProduto.Text, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now);
-            MessageBox.Show(cadProd.msg);
-            Limpar();
+            int ativo;
+
+            if (checkBoxAtivo.IsChecked == true)
+            {
+                ativo = 1;
+                CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, cbxGrupoProduto.Text, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
+                MessageBox.Show(cadProd.msg);
+                Limpar();
+            }
+            else
+            {
+                ativo = 0;
+                CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, cbxGrupoProduto.Text, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
+                MessageBox.Show(cadProd.msg);
+                Limpar();
+            }
         }
 
+        //Botao Limpar
         private void btnLimpar_Click_1(object sender, RoutedEventArgs e)
         {
             Limpar();

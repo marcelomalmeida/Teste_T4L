@@ -16,24 +16,25 @@ namespace Teste_T4L
         DateTime data = DateTime.Now;
         public String msg;
 
-        public CadastroProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, DateTime data)
+        public CadastroProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, DateTime data, int ativo)
         {
             //Comando Sql
-            cmd.CommandText = "INSERT INTO produto (descricao, codBarra, codGrupo, precoCusto, precoVenda, dataHoraCadastro) values(@descricao, @codBarra, @codGrupo, @precoCusto, @precoVenda, @dataHoraCadastro)";
+            cmd.CommandText = "INSERT INTO produto (descricao, codBarra, codGrupo, precoCusto, precoVenda, dataHoraCadastro, ativo) values(@descricao, @codBarra, @codGrupo, @precoCusto, @precoVenda, @dataHoraCadastro, @ativo)";
 
-            //
+            //Passando parametros para SQL
             cmd.Parameters.AddWithValue("@descricao", descricao);
             cmd.Parameters.AddWithValue("@codBarra", int.Parse(codBarra));
-            cmd.Parameters.AddWithValue("@codGrupo", int.Parse(precoCusto));
+            cmd.Parameters.AddWithValue("@codGrupo", int.Parse(codGrupo));
             cmd.Parameters.AddWithValue("@precoCusto", double.Parse(precoCusto));
             cmd.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
             cmd.Parameters.AddWithValue("@dataHoraCadastro", data);
+            cmd.Parameters.AddWithValue("@ativo", ativo);
 
             try
             {
                 //Conectar com BD
                 cmd.Connection = conexao.conectar();
-                //Executar comando
+                //Executar os comandos SQL
                 cmd.ExecuteNonQuery();
                 //Desconectar
                 conexao.desconectar();

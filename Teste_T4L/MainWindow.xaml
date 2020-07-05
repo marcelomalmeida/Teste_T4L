@@ -23,6 +23,7 @@
         <Label Content="Preço de Custo" HorizontalAlignment="Left" Margin="40,129,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Preço de Venda" HorizontalAlignment="Left" Margin="37,163,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="cbxGrupoProduto" Grid.Column="1" HorizontalAlignment="Left" Margin="25,65,0,0" VerticalAlignment="Top" Width="237"/>
+        <CheckBox x:Name="checkBoxAtivo" Content="Ativar" Grid.Column="1" HorizontalAlignment="Left" Margin="25,208,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
