@@ -23,12 +23,22 @@ namespace Teste_T4L
 
             //Passando parametros para SQL
             cmd.Parameters.AddWithValue("@descricao", descricao);
-            cmd.Parameters.AddWithValue("@codBarra", int.Parse(codBarra));
             cmd.Parameters.AddWithValue("@codGrupo", int.Parse(codGrupo));
             cmd.Parameters.AddWithValue("@precoCusto", double.Parse(precoCusto));
             cmd.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
             cmd.Parameters.AddWithValue("@dataHoraCadastro", data);
             cmd.Parameters.AddWithValue("@ativo", ativo);
+
+            //Se o campo Código de barras não for preenchido ele será um null no bd
+            if (codBarra == "")
+            {
+                codBarra = null;
+                cmd.Parameters.AddWithValue("@codBarra", codBarra);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@codBarra", codBarra);
+            }
 
             try
             {

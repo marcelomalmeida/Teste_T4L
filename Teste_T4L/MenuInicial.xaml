@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Menu Inicial" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Menu Inicial" Height="262.423" Width="437.782" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFBFBFBF" HorizontalAlignment="Left" Width="428">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="779*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnCadastrarProduto" Content="Cadastrar Produto" HorizontalAlignment="Left" Margin="81.786,53,0,0" VerticalAlignment="Top" Width="132" Click="btnCadastrarProduto_Click" Grid.Column="1"/>
-        <Button x:Name="btnConsultProd" Content="Consultar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="82,106,0,0" VerticalAlignment="Top" Width="132" Click="btnConsultProd_Click"/>
+        <Button x:Name="btnCadastrarProduto" Content="Cadastrar Produto" HorizontalAlignment="Left" Margin="32,56,0,0" VerticalAlignment="Top" Width="132" Click="btnCadastrarProduto_Click" Grid.Column="1" Height="48"/>
+        <Button x:Name="btnConsultProd" Content="Consultar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="32,125,0,0" VerticalAlignment="Top" Width="132" Click="btnConsultProd_Click" Height="48"/>
+        <GroupBox Header="Produtos" HorizontalAlignment="Left" Height="173" Margin="1,27,0,0" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+        <GroupBox Header="Vendas" HorizontalAlignment="Left" Height="173" Margin="214,27,0,0" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
 
     </Grid>
 </Window>
