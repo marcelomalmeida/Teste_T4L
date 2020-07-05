@@ -11,7 +11,7 @@ namespace Teste_T4L
 {
     class CadastroProduto
     {
-        Conexao conexao = new Conexao();
+        Conexao con = new Conexao();
         MySqlCommand cmd = new MySqlCommand();
         DateTime data = DateTime.Now;
         public String msg;
@@ -33,11 +33,11 @@ namespace Teste_T4L
             try
             {
                 //Conectar com BD
-                cmd.Connection = conexao.conectar();
+                cmd.Connection = con.conectar();
                 //Executar os comandos SQL
                 cmd.ExecuteNonQuery();
                 //Desconectar
-                conexao.desconectar();
+                con.desconectar();
                 //Mostrar msg Sucesso
                 this.msg = "Cadastrado com Sucesso!";
 

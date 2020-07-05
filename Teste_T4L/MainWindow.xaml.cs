@@ -24,19 +24,17 @@ namespace Teste_T4L
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
-
             // Carregar itens no combobox
             try
             {
-                Conexao conect = new Conexao();
+                Conexao con = new Conexao();
                 string selectQuery = "SELECT * FROM produto_grupo";
-                MySqlCommand command = new MySqlCommand(selectQuery, conect.conectar());
-                MySqlDataReader reader = command.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
 
+                MySqlDataReader reader = cmd.ExecuteReader();
                 while(reader.Read())
                 {
                     cbxGrupoProduto.Items.Add(reader.GetString("nome"));
@@ -65,22 +63,20 @@ namespace Teste_T4L
 
             try
             {
-                Conexao conect = new Conexao();
-                string selectQuery = "SELECT cod FROM produto_grupo WHERE PRODUTO_GRUPO.nome = ?";
-                MySqlCommand command = new MySqlCommand(selectQuery, conect.conectar());
-                command.Parameters.Add("@PRODUTO_GRUPO.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
-
-                command.CommandType = CommandType.Text;
-
-                MySqlDataReader dr;
-                dr = command.ExecuteReader();
-                dr.Read();
-
-                string codGrupo = dr.GetString("cod");
+                //Convertendo Nome do grupo do Produto para o código
+                Conexao con = new Conexao();
+                string selectQuery = "SELECT cod FROM produto_grupo WHERE produto_grupo.nome = ?";
+                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
+                cmd.Parameters.Add("@produto_grupo.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
+                cmd.CommandType = CommandType.Text;
+                
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                string codGrupo = reader.GetString("cod");
 
                 int ativo;
 
-                if (checkBoxAtivo.IsChecked == true)
+                if (checkBoxAtivo.IsChecked == true) //Validação para ver se o produto foi ativado
                 {
 
                     ativo = 1;
@@ -99,7 +95,6 @@ namespace Teste_T4L
             {
 
             }
-            
         }
 
         //Botao Limpar
