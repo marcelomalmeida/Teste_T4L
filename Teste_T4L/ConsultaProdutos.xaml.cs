@@ -63,11 +63,36 @@ namespace Teste_T4L
             {
                 editProd.Show();
                 this.Close();
+
+                Conexao con = new Conexao();
                 
+                //Pegando os itens selecionados no dataGrid
                 editProd.txtDesc.Text = dr["Descrição"].ToString();
-                //editProd.txtCodBarra.Text = dr[""].ToString();
                 editProd.txtPrecoCusto.Text = dr["PrecoCusto"].ToString();
                 editProd.txtPrecoVenda.Text = dr["precoVenda"].ToString();
+                editProd.cbxGrupoProduto.Text = dr["Grupo"].ToString();
+
+                //Pegando o Código de Barras do bdd com base no Código do produto
+                string selectQuery = "SELECT codBarra FROM produto WHERE cod = ?";
+                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
+                cmd.Parameters.Add("@cod", MySqlDbType.String).Value = dr["Código"].ToString();
+                cmd.CommandType = CommandType.Text;
+                
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                
+                string codBarra = reader.GetString("codBarra");
+                editProd.txtCodBarra.Text = codBarra;
+
+                //Verificação se o produto esta Ativo ou não
+                if (dr["Ativo"].ToString() == "True")
+                {
+                    editProd.checkBoxAtivo.IsChecked = true;
+                }
+                else
+                {
+                    editProd.checkBoxAtivo.IsChecked = false;
+                }
             }
 
         }

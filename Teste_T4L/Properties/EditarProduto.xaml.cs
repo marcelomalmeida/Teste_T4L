@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace Teste_T4L.Properties
 {
@@ -22,6 +23,31 @@ namespace Teste_T4L.Properties
         public EditarProduto()
         {
             InitializeComponent();
+
+            try
+            {
+                Conexao con = new Conexao();
+                string selectQuery = "SELECT * FROM produto_grupo";
+                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    cbxGrupoProduto.Items.Add(reader.GetString("nome"));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaProdutos consultProd = new ConsultaProdutos();
+            consultProd.Show();
+            this.Close();
         }
     }
 }

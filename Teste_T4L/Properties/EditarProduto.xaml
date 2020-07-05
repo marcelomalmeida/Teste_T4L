@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L.Properties"
         mc:Ignorable="d"
-        Title="Editar Produto" Height="323.409" Width="444.251" WindowStartupLocation="CenterScreen">
+        Title="Editar Produto" Height="323.409" Width="444.251" WindowStartupLocation="CenterScreen" Background="#FFBFBFBF">
     <Grid Margin="0,0,13,13">
         <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="23" Margin="166,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
         <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Left" Height="23" Margin="166,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
@@ -20,7 +20,7 @@
         <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" HorizontalAlignment="Left" Margin="166,208,0,0" VerticalAlignment="Top" Height="18" Width="183"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="27,246,0,0" VerticalAlignment="Top" Width="108" Height="23"/>
         <Button x:Name="btnDeletar" Content="Deletar" HorizontalAlignment="Left" Margin="166,246,0,0" VerticalAlignment="Top" Width="108" Height="23"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="299,246,0,0" VerticalAlignment="Top" Width="108" Height="23"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="299,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnCancelar_Click"/>
 
     </Grid>
 </Window>
