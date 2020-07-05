@@ -8,23 +8,24 @@
         Title="Cadastro de Produto" Height="322" Width="442.667" FontSize="14" WindowStartupLocation="CenterScreen" Background="#FFBFBFBF" BorderBrush="Black">
     <Grid Margin="0,0,2,-2">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="135*"/>
-            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="84*"/>
             <ColumnDefinition Width="208*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="23" Margin="25,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Left" Height="23" Margin="25,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Left" Height="23" Margin="25,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Left" Height="23" Margin="25,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="40,246,0,0" VerticalAlignment="Top" Width="75" Click="btnCadastrar_Click_1"/>
-        <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="25,246,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.261,-0.068" Click="btnLimpar_Click_1" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label Content="Descrição" HorizontalAlignment="Left" Margin="73,27,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
-        <Label Content="Grupo de Produto" HorizontalAlignment="Left" Margin="21,61,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
-        <Label Content="Código de Barras" HorizontalAlignment="Left" Margin="27,95,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
-        <Label Content="Preço de Custo" HorizontalAlignment="Left" Margin="40,129,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
-        <Label Content="Preço de Venda" HorizontalAlignment="Left" Margin="37,163,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
-        <ComboBox x:Name="cbxGrupoProduto" Grid.Column="1" HorizontalAlignment="Left" Margin="25,65,0,0" VerticalAlignment="Top" Width="237" Grid.ColumnSpan="2"/>
-        <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" Grid.Column="1" HorizontalAlignment="Left" Margin="25,208,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="23" Margin="25,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Left" Height="23" Margin="25,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Left" Height="23" Margin="25,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Left" Height="23" Margin="25,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="27,246,0,0" VerticalAlignment="Top" Width="108" Click="btnCadastrar_Click_1" Height="23"/>
+        <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="25,246,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.261,-0.068" Click="btnLimpar_Click_1" Grid.Column="1" Grid.ColumnSpan="2" Height="23"/>
+        <Label Content="Descrição" HorizontalAlignment="Left" Margin="73,27,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Height="29" Width="73"/>
+        <Label Content="Grupo de Produto" HorizontalAlignment="Left" Margin="21,61,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Height="29" Width="129"/>
+        <Label Content="Código de Barras" HorizontalAlignment="Left" Margin="27,95,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Height="29" Width="122"/>
+        <Label Content="Preço de Custo" HorizontalAlignment="Left" Margin="40,129,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Height="29" Width="108"/>
+        <Label Content="Preço de Venda" HorizontalAlignment="Left" Margin="37,163,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Height="29" Width="112"/>
+        <ComboBox x:Name="cbxGrupoProduto" Grid.Column="1" HorizontalAlignment="Left" Margin="25,65,0,0" VerticalAlignment="Top" Width="241" Grid.ColumnSpan="2" Height="25"/>
+        <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" Grid.Column="1" HorizontalAlignment="Left" Margin="25,208,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="18" Width="183"/>
+        <Button x:Name="btnVoltar" Content="Voltar" Grid.Column="2" HorizontalAlignment="Left" Margin="74,246,0,0" VerticalAlignment="Top" Width="108" Click="btnVoltar_Click" Height="23"/>
 
     </Grid>
 </Window>

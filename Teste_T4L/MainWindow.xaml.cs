@@ -97,11 +97,18 @@ namespace Teste_T4L
             }
         }
 
-        //Botao Limpar
+        //Botao para limpar os campos
         private void btnLimpar_Click_1(object sender, RoutedEventArgs e)
         {
             Limpar();
         }
 
+        //Botao para voltar ao Menu
+        private void btnVoltar_Click(object sender, RoutedEventArgs e)
+        {
+            MenuInicial mI = new MenuInicial();
+            mI.Show();
+            this.Close();
+        }
     }
 }
