@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,7 +39,7 @@ namespace Teste_T4L
 
                 while(reader.Read())
                 {
-                    cbxGrupoProduto.Items.Add(reader.GetString("cod"));
+                    cbxGrupoProduto.Items.Add(reader.GetString("nome"));
                 }
                 
             }
@@ -61,22 +62,44 @@ namespace Teste_T4L
         //Botao Cadastar
         private void btnCadastrar_Click_1(object sender, RoutedEventArgs e)
         {
-            int ativo;
 
-            if (checkBoxAtivo.IsChecked == true)
+            try
             {
-                ativo = 1;
-                CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, cbxGrupoProduto.Text, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
-                MessageBox.Show(cadProd.msg);
-                Limpar();
-            }
-            else
+                Conexao conect = new Conexao();
+                string selectQuery = "SELECT cod FROM produto_grupo WHERE PRODUTO_GRUPO.nome = ?";
+                MySqlCommand command = new MySqlCommand(selectQuery, conect.conectar());
+                command.Parameters.Add("@PRODUTO_GRUPO.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
+
+                command.CommandType = CommandType.Text;
+
+                MySqlDataReader dr;
+                dr = command.ExecuteReader();
+                dr.Read();
+
+                string codGrupo = dr.GetString("cod");
+
+                int ativo;
+
+                if (checkBoxAtivo.IsChecked == true)
+                {
+
+                    ativo = 1;
+                    CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
+                    MessageBox.Show(cadProd.msg);
+                    Limpar();
+                }
+                else
+                {
+                    ativo = 0;
+                    CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
+                    MessageBox.Show(cadProd.msg);
+                    Limpar();
+                }
+            }catch(Exception ex)
             {
-                ativo = 0;
-                CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, cbxGrupoProduto.Text, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
-                MessageBox.Show(cadProd.msg);
-                Limpar();
+
             }
+            
         }
 
         //Botao Limpar
