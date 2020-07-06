@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,8 @@ namespace Teste_T4L
     /// </summary>
     public partial class ConsultaProdutos : Window
     {
+        public string cod;
+
         public ConsultaProdutos()
         {
             InitializeComponent();
@@ -57,6 +60,7 @@ namespace Teste_T4L
 
         private void btnEditProd_Click(object sender, RoutedEventArgs e)
         {
+            //Carregar tela de edição de produtos conforme linha selecionada no dataGrid
             try
             {
                 EditarProduto editProd = new EditarProduto();
@@ -73,6 +77,7 @@ namespace Teste_T4L
                     editProd.txtPrecoCusto.Text = dr["PrecoCusto"].ToString();
                     editProd.txtPrecoVenda.Text = dr["precoVenda"].ToString();
                     editProd.cbxGrupoProduto.Text = dr["Grupo"].ToString();
+                    cod = dr["Código"].ToString();
 
                     //Pegando o Código de Barras do bdd com base no Código do produto
                     string selectQuery = "SELECT codBarra FROM produto WHERE cod = ?";
@@ -94,7 +99,7 @@ namespace Teste_T4L
                         editProd.txtCodBarra.Text = "";
                     }
 
-                    //Verificação se o produto esta Ativo ou não
+                    //Verificação se o produto esta com o checkBox Ativo ou não
                     if (dr["Ativo"].ToString() == "True")
                     {
                         editProd.checkBoxAtivo.IsChecked = true;
@@ -103,6 +108,7 @@ namespace Teste_T4L
                     {
                         editProd.checkBoxAtivo.IsChecked = false;
                     }
+
                 }
             }
             catch (Exception ex)
