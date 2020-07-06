@@ -93,7 +93,7 @@ namespace Teste_T4L
                 }
             }catch(Exception ex)
             {
-
+                MessageBox.Show("Falta informação!!");
             }
         }
 

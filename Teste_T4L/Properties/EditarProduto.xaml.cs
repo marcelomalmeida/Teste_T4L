@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,9 +68,9 @@ namespace Teste_T4L.Properties
                 string codGrupo = reader.GetString("cod");
 
                 int ativo;
-
-                ConsultaProdutos conProd = new ConsultaProdutos();
-                string codigo = "13";
+                string codigo = "Falta o parametro certo";
+                
+                
 
                 if (checkBoxAtivo.IsChecked == true) //Validação para ver se o produto foi ativado
                 {
@@ -89,37 +90,52 @@ namespace Teste_T4L.Properties
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Verificar Campos!!");
             }
 
         }
 
-        private void btnDeletar_Click(object sender, RoutedEventArgs e)
+        private void btnDeletar_Click(object sender, RoutedEventArgs e)//Botão para deletar produtos no banco de dados
         {
             try
             {
-                if (MessageBox.Show("Deseja deletar o item?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                int cod = 9; //Esta apenas como Exemplo para teste
+                //Verificar se po produto ja foi usado em alguma venda
+                string verificacao = "SELECT COUNT(1) FROM venda_produto WHERE codProduto = @cod";
+                Conexao conexao = new Conexao();
+                MySqlCommand comando = new MySqlCommand(verificacao, conexao.conectar());
+                comando.Parameters.AddWithValue("@cod", cod);
+                var result = comando.ExecuteScalar();
+
+                if (result != null)
                 {
-                    int cod = 7;
-                    Conexao con = new Conexao();
-                    string deleteQuery = "DELETE FROM produto WHERE cod = @cod";
-                    MySqlCommand cmd = new MySqlCommand(deleteQuery, con.conectar());
-                    cmd.Parameters.AddWithValue("cod", cod);
+                    if (MessageBox.Show("Deseja deletar o item?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {   
+                        //Deletando o produto selecionado.
+                        Conexao con = new Conexao();
+                        string deleteQuery = "DELETE FROM produto WHERE cod = @cod";
+                        MySqlCommand cmd = new MySqlCommand(deleteQuery, con.conectar());
+                        cmd.Parameters.AddWithValue("@cod", cod);
 
-                    //Executar comandos MySql
-                    cmd.ExecuteNonQuery();
+                        //Executar comandos MySql
+                        cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Produto Deletado com Sucesso");
+                        MessageBox.Show("Produto Deletado com Sucesso!!!!");
 
-                    //Limpar Campos
-                    txtCodBarra.Clear();
-                    txtDesc.Clear();
-                    txtPrecoCusto.Clear();
-                    txtPrecoVenda.Clear();
+                        //Limpar Campos
+                        txtCodBarra.Clear();
+                        txtDesc.Clear();
+                        txtPrecoCusto.Clear();
+                        txtPrecoVenda.Clear();
+                    }
+                    else
+                    {
+
+                    }
                 }
                 else
                 {
-
+                    MessageBox.Show("Produto não pode ser deletado, pois foi usado em Vendas");
                 }
                 
             }
