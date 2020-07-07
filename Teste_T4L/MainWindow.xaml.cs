@@ -44,16 +44,15 @@ namespace Teste_T4L
                 conexao.desconectar();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro no Processo!!!");
             }
         }
 
         //Botao Cadastar
         private void btnCadastrar_Click_1(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 //Convertendo Nome do grupo do Produto para o código
@@ -75,7 +74,6 @@ namespace Teste_T4L
 
                     ativo = 1;
                     CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
-                    MessageBox.Show(cadProd.msg);
                     txtDesc.Clear();
                     txtCodBarra.Clear();
                     txtPrecoCusto.Clear();
@@ -85,7 +83,6 @@ namespace Teste_T4L
                 {
                     ativo = 0;
                     CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
-                    MessageBox.Show(cadProd.msg);
                     txtDesc.Clear();
                     txtCodBarra.Clear();
                     txtPrecoCusto.Clear();
@@ -95,7 +92,7 @@ namespace Teste_T4L
                 conexao.desconectar();
 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 MessageBox.Show("Falta informação!!");
             }
@@ -116,6 +113,26 @@ namespace Teste_T4L
             MenuInicial mI = new MenuInicial();
             mI.Show();
             this.Close();
+        }
+
+        //Metodo para aceitar apenas numeros no campo Preco
+        private void txtPrecoCusto_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecoCusto.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Informar o valor");
+                txtPrecoCusto.Clear();
+            }
+        }
+
+        //Metodo para aceitar apenas numeros no campo Preco
+        private void txtPrecoVenda_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecoVenda.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Informar o valor");
+                txtPrecoVenda.Clear();
+            }
         }
     }
 }

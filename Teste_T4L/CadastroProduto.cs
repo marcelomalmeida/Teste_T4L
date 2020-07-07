@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using MySql.Data.MySqlClient;
+using System.Windows;
 
 namespace Teste_T4L
 {
     class CadastroProduto
     {
-        public string msg;
-
+        
         public CadastroProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, DateTime data, int ativo)
         {
             try
@@ -45,11 +45,11 @@ namespace Teste_T4L
                 comando.ExecuteNonQuery(); //Comando de execusao da querya
                 conexao.desconectar(); //Metodo para desconectar do banco de dados
 
-                this.msg = "Cadastrado com Sucesso!";
+                MessageBox.Show("Produto Cadastrado com Sucesso!");
             }
-            catch (MySqlException e)
+            catch (Exception)
             {
-                this.msg = "Erro ao se conectar com o banco de dados";
+                MessageBox.Show("Verificar Preenchimento!");
             }
 
         }

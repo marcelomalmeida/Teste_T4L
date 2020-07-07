@@ -60,9 +60,9 @@ namespace Teste_T4L
                 dataGridConsult.ItemsSource = table.DefaultView;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro no processo!!!");
             }
         }
 
@@ -122,9 +122,9 @@ namespace Teste_T4L
                     conexao.desconectar();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro no processo!!!");
             }
 
         }

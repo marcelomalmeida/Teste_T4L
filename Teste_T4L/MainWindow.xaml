@@ -14,8 +14,8 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="23" Margin="25,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Left" Height="23" Margin="25,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Left" Height="23" Margin="25,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Left" Height="23" Margin="25,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Left" Height="23" Margin="25,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2" TextChanged="txtPrecoCusto_TextChanged"/>
+        <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Left" Height="23" Margin="25,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2" TextChanged="txtPrecoVenda_TextChanged"/>
         <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="27,246,0,0" VerticalAlignment="Top" Width="108" Click="btnCadastrar_Click_1" Height="23"/>
         <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="25,246,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.261,-0.068" Click="btnLimpar_Click_1" Grid.Column="1" Grid.ColumnSpan="2" Height="23"/>
         <Label Content="Descrição" HorizontalAlignment="Left" Margin="73,27,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold" Height="29" Width="73"/>

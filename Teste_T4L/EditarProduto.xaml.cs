@@ -43,7 +43,7 @@ namespace Teste_T4L.Properties
                 conexao.desconectar();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erro ao carregar combobox");
             }
@@ -76,7 +76,7 @@ namespace Teste_T4L.Properties
                 string codGrupo = reader.GetString("cod");
 
                 int ativo;
-                             
+               
                 if (checkBoxAtivo.IsChecked == true) //Validação para ver se o produto foi ativado
                 {
 
@@ -94,10 +94,11 @@ namespace Teste_T4L.Properties
                 }
 
                 conexao.desconectar();
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Verificar Campos!!");
+                MessageBox.Show("Verificar se os campos estão preenchidos corretamente!!");
             }
 
         }
@@ -107,22 +108,22 @@ namespace Teste_T4L.Properties
             try
             {
 
-                string cod = ConsultaProdutos.codigo; string codigo = ConsultaProdutos.codigo;
-
-                //Fazendo a conexão com o bd e passando a query Select para pegar o valor do codigo para ver se o mesmo ja foi usado em alguma venda
-                string selectQuery = "SELECT COUNT(1) FROM venda_produto WHERE codProduto = @cod";
-                Conexao conexao = new Conexao();
-                MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
-                comando.Parameters.AddWithValue("@cod", cod);
-
-                var result = comando.ExecuteScalar();
-
-                if (result != null) //Verificar se o produto ja foi usado em alguma venda
+                if (MessageBox.Show("Deseja deletar o item?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    if (MessageBox.Show("Deseja deletar o item?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    {   
+                    string cod = ConsultaProdutos.codigo; 
+
+                    //Fazendo a conexão com o bd e passando a query Select para pegar o valor do codigo para ver se o mesmo ja foi usado em alguma venda
+                    string selectQuery = "SELECT COUNT(1) FROM venda_produto WHERE codProduto = @cod";
+                    Conexao conexao = new Conexao();
+                    MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
+                    comando.Parameters.AddWithValue("@cod", cod);
+
+                    var result = comando.ExecuteScalar();
+                    
+                    if (result != null) //Verificar se o produto ja foi usado em alguma venda
+                    {
+
                         //Deletando o produto selecionado.
-                        //Conexao con = new Conexao();
                         string deleteQuery = "DELETE FROM produto WHERE cod = @cod";
                         MySqlCommand cmd = new MySqlCommand(deleteQuery, conexao.conectar());
                         cmd.Parameters.AddWithValue("@cod", cod);
@@ -137,19 +138,19 @@ namespace Teste_T4L.Properties
                         txtDesc.Clear();
                         txtPrecoCusto.Clear();
                         txtPrecoVenda.Clear();
+
+                        conexao.desconectar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Produto não pode ser deletado pois já foi usado em Vendas");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Produto não pode ser deletado, pois foi usado em Vendas");
-                }
-
-                conexao.desconectar();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro de comunicação com o Banco de Dados!");
+                MessageBox.Show("Produto não pode ser deletado pois já foi usado em Vendas");
             }
         }
     }
