@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,9 +29,10 @@ namespace Teste_T4L.Properties
 
             try
             {
-                Conexao con = new Conexao();
+                //Carregar itens para ComboBox na tela de edição de Produto;
+                Conexao conexao = new Conexao();
                 string selectQuery = "SELECT * FROM produto_grupo";
-                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
+                MySqlCommand cmd = new MySqlCommand(selectQuery, conexao.conectar());
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -38,13 +40,16 @@ namespace Teste_T4L.Properties
                     cbxGrupoProduto.Items.Add(reader.GetString("nome"));
                 }
 
+                conexao.desconectar();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro ao carregar combobox");
             }
         }
 
+        //Botão canceçar para voltar a tela de consulta de itens
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             ConsultaProdutos consultProd = new ConsultaProdutos();
@@ -57,21 +62,21 @@ namespace Teste_T4L.Properties
             try
             {
                 //Convertendo Nome do grupo do Produto para o código
-                Conexao con = new Conexao();
-                string selectQuery = "SELECT cod FROM produto_grupo WHERE produto_grupo.nome = ?";
-                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
-                cmd.Parameters.Add("@produto_grupo.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
-                cmd.CommandType = CommandType.Text;
+                string codigo = ConsultaProdutos.codigo; //Pegando o valor da variavel global inserido no metodo de Editar produto
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                //Fazendo a conexão com o bd e passando a query Select para pegar o valor do codigo para usar como key para atualizar os cados no bd
+                Conexao conexao = new Conexao();
+                string selectQuery = "SELECT cod FROM produto_grupo WHERE produto_grupo.nome = ?";
+                MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
+                comando.Parameters.Add("@produto_grupo.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
+                comando.CommandType = CommandType.Text;
+
+                MySqlDataReader reader = comando.ExecuteReader();
                 reader.Read();
                 string codGrupo = reader.GetString("cod");
 
                 int ativo;
-                string codigo = "Falta o parametro certo";
-                
-                
-
+                             
                 if (checkBoxAtivo.IsChecked == true) //Validação para ver se o produto foi ativado
                 {
 
@@ -87,6 +92,8 @@ namespace Teste_T4L.Properties
                     MessageBox.Show(upProd.msg);
 
                 }
+
+                conexao.desconectar();
             }
             catch (Exception ex)
             {
@@ -99,22 +106,25 @@ namespace Teste_T4L.Properties
         {
             try
             {
-                int cod = 9; //Esta apenas como Exemplo para teste
-                //Verificar se po produto ja foi usado em alguma venda
-                string verificacao = "SELECT COUNT(1) FROM venda_produto WHERE codProduto = @cod";
+
+                string cod = ConsultaProdutos.codigo; string codigo = ConsultaProdutos.codigo;
+
+                //Fazendo a conexão com o bd e passando a query Select para pegar o valor do codigo para ver se o mesmo ja foi usado em alguma venda
+                string selectQuery = "SELECT COUNT(1) FROM venda_produto WHERE codProduto = @cod";
                 Conexao conexao = new Conexao();
-                MySqlCommand comando = new MySqlCommand(verificacao, conexao.conectar());
+                MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
                 comando.Parameters.AddWithValue("@cod", cod);
+
                 var result = comando.ExecuteScalar();
 
-                if (result != null)
+                if (result != null) //Verificar se o produto ja foi usado em alguma venda
                 {
                     if (MessageBox.Show("Deseja deletar o item?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {   
                         //Deletando o produto selecionado.
-                        Conexao con = new Conexao();
+                        //Conexao con = new Conexao();
                         string deleteQuery = "DELETE FROM produto WHERE cod = @cod";
-                        MySqlCommand cmd = new MySqlCommand(deleteQuery, con.conectar());
+                        MySqlCommand cmd = new MySqlCommand(deleteQuery, conexao.conectar());
                         cmd.Parameters.AddWithValue("@cod", cod);
 
                         //Executar comandos MySql
@@ -128,20 +138,18 @@ namespace Teste_T4L.Properties
                         txtPrecoCusto.Clear();
                         txtPrecoVenda.Clear();
                     }
-                    else
-                    {
-
-                    }
                 }
                 else
                 {
                     MessageBox.Show("Produto não pode ser deletado, pois foi usado em Vendas");
                 }
-                
+
+                conexao.desconectar();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro de comunicação com o Banco de Dados!");
             }
         }
     }

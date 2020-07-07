@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MySql.Data.MySqlClient;
 
 namespace Teste_T4L
 {
@@ -12,6 +13,7 @@ namespace Teste_T4L
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
-    {
+    {      
+        
     }
 }

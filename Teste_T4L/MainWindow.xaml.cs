@@ -22,7 +22,7 @@ namespace Teste_T4L
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window //MainWindow é a tela de cadastro de produto
     {
         public MainWindow()
         {
@@ -30,31 +30,24 @@ namespace Teste_T4L
             // Carregar itens no combobox
             try
             {
-                Conexao con = new Conexao();
+                Conexao conexao = new Conexao();
                 string selectQuery = "SELECT * FROM produto_grupo";
-                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
+                MySqlCommand cmd = new MySqlCommand(selectQuery, conexao.conectar());
 
                 MySqlDataReader reader = cmd.ExecuteReader();
+
                 while(reader.Read())
                 {
                     cbxGrupoProduto.Items.Add(reader.GetString("nome"));
                 }
-                
+
+                conexao.desconectar();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        //Método para limpar os campos
-        public void Limpar()
-        {
-            txtDesc.Clear();
-            txtCodBarra.Clear();
-            txtPrecoCusto.Clear();
-            txtPrecoVenda.Clear();
-            
         }
 
         //Botao Cadastar
@@ -64,14 +57,15 @@ namespace Teste_T4L
             try
             {
                 //Convertendo Nome do grupo do Produto para o código
-                Conexao con = new Conexao();
+                Conexao conexao = new Conexao();
                 string selectQuery = "SELECT cod FROM produto_grupo WHERE produto_grupo.nome = ?";
-                MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
-                cmd.Parameters.Add("@produto_grupo.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
-                cmd.CommandType = CommandType.Text;
+                MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
+                comando.Parameters.Add("@produto_grupo.nome", MySqlDbType.String).Value = cbxGrupoProduto.Text;
+                comando.CommandType = CommandType.Text;
                 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataReader reader = comando.ExecuteReader();
                 reader.Read();
+
                 string codGrupo = reader.GetString("cod");
 
                 int ativo;
@@ -82,16 +76,26 @@ namespace Teste_T4L
                     ativo = 1;
                     CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
                     MessageBox.Show(cadProd.msg);
-                    Limpar();
+                    txtDesc.Clear();
+                    txtCodBarra.Clear();
+                    txtPrecoCusto.Clear();
+                    txtPrecoVenda.Clear();
                 }
                 else
                 {
                     ativo = 0;
                     CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
                     MessageBox.Show(cadProd.msg);
-                    Limpar();
+                    txtDesc.Clear();
+                    txtCodBarra.Clear();
+                    txtPrecoCusto.Clear();
+                    txtPrecoVenda.Clear();
                 }
-            }catch(Exception ex)
+
+                conexao.desconectar();
+
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Falta informação!!");
             }
@@ -100,7 +104,10 @@ namespace Teste_T4L
         //Botao para limpar os campos
         private void btnLimpar_Click_1(object sender, RoutedEventArgs e)
         {
-            Limpar();
+            txtDesc.Clear();
+            txtCodBarra.Clear();
+            txtPrecoCusto.Clear();
+            txtPrecoVenda.Clear();
         }
 
         //Botao para voltar ao Menu

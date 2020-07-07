@@ -11,30 +11,30 @@ namespace Teste_T4L
     public class Conexao
     {
 
-        MySqlConnection con = new MySqlConnection();
+        MySqlConnection conexao = new MySqlConnection();
 
         //Construtor
         public Conexao()
         {
-            con.ConnectionString = "Server=localhost;Database=testdev;Uid=root;Pwd=123456;";
+            conexao.ConnectionString = "Server=localhost;Database=testdev;Uid=root;Pwd=123456;";
         }
 
         //Metodo Conectar
         public MySqlConnection conectar()
         {
-            if (con.State == System.Data.ConnectionState.Closed)
+            if (conexao.State == System.Data.ConnectionState.Closed)
             {
-                con.Open();
+                conexao.Open();
             }
-            return con;
+            return conexao;
         }
 
         //Metodo Desconectar
         public void desconectar()
         {
-            if (con.State == System.Data.ConnectionState.Open)
+            if (conexao.State == System.Data.ConnectionState.Open)
             {
-                con.Close();
+                conexao.Close();
             }
 
         }

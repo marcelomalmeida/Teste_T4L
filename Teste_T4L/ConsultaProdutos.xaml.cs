@@ -24,6 +24,15 @@ namespace Teste_T4L
     /// </summary>
     public partial class ConsultaProdutos : Window
     {
+        //Processo para arquivar o codigo em uma variavel para pode acessa-la em outras classes
+        private static string _codigo;
+        public static string codigo
+        {
+            get { return _codigo; }
+            set { _codigo = value; }
+        }
+
+
         public ConsultaProdutos()
         {
             InitializeComponent();
@@ -40,12 +49,13 @@ namespace Teste_T4L
         {
             try
             {
-                //Carregar a dataGrid com as informações do bd
-                Conexao con = new Conexao();
+                //Fazendo a conexão com o bd e passando a query Select para pegar os valores e colocar no dataGrids
+                Conexao conexao = new Conexao();
                 string selectQuery = "SELECT PRODUTO.cod as Código, PRODUTO.descricao as Descrição, PRODUTO_GRUPO.nome as Grupo, " +
-                                     "PRODUTO.precoCusto as PrecoCusto, PRODUTO.precoVenda as PrecoVenda, PRODUTO.ativo as Ativo FROM PRODUTO INNER JOIN PRODUTO_GRUPO ON PRODUTO.codGrupo = PRODUTO_GRUPO.cod";
+                                     "PRODUTO.precoCusto as PrecoCusto, PRODUTO.precoVenda as PrecoVenda, PRODUTO.ativo as Ativo FROM " +
+                                     "PRODUTO INNER JOIN PRODUTO_GRUPO ON PRODUTO.codGrupo = PRODUTO_GRUPO.cod";
                 DataTable table = new DataTable();
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(selectQuery, con.conectar());
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(selectQuery, conexao.conectar());
                 dataAdapter.Fill(table);
                 dataGridConsult.ItemsSource = table.DefaultView;
             }
@@ -67,9 +77,8 @@ namespace Teste_T4L
                 {
                     editProd.Show();
                     this.Close();
-
-                    Conexao con = new Conexao();
                     string cod;
+
                     //Pegando os itens selecionados no dataGrid
                     editProd.txtDesc.Text = dr["Descrição"].ToString();
                     editProd.txtPrecoCusto.Text = dr["PrecoCusto"].ToString();
@@ -77,15 +86,16 @@ namespace Teste_T4L
                     editProd.cbxGrupoProduto.Text = dr["Grupo"].ToString();
                     cod = dr["Código"].ToString();
 
-
+                    ConsultaProdutos.codigo = cod; //Passando o valor do codigo para a variavel global
 
                     //Pegando o Código de Barras do bdd com base no Código do produto
+                    Conexao conexao = new Conexao();
                     string selectQuery = "SELECT codBarra FROM produto WHERE cod = ?";
-                    MySqlCommand cmd = new MySqlCommand(selectQuery, con.conectar());
-                    cmd.Parameters.Add("@cod", MySqlDbType.String).Value = dr["Código"].ToString();
-                    cmd.CommandType = CommandType.Text;
+                    MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
+                    comando.Parameters.Add("@cod", MySqlDbType.String).Value = dr["Código"].ToString();
+                    comando.CommandType = CommandType.Text;
 
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    MySqlDataReader reader = comando.ExecuteReader();
                     reader.Read();
 
                     //Pegando o valor do código de barras e verificando se o mesmo é um valor null
@@ -109,6 +119,7 @@ namespace Teste_T4L
                         editProd.checkBoxAtivo.IsChecked = false;
                     }
 
+                    conexao.desconectar();
                 }
             }
             catch (Exception ex)

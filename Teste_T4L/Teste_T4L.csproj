@@ -85,7 +85,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Properties\EditarProduto.xaml">
+    <Page Include="EditarProduto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,7 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\EditarProduto.xaml.cs">
+    <Compile Include="EditarProduto.xaml.cs">
       <DependentUpon>EditarProduto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">

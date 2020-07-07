@@ -11,50 +11,44 @@ namespace Teste_T4L
 {
     class CadastroProduto
     {
-        Conexao con = new Conexao();
-        MySqlCommand cmd = new MySqlCommand();
-        DateTime data = DateTime.Now;
-        public String msg;
+        public string msg;
 
         public CadastroProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, DateTime data, int ativo)
         {
-            //Comando Sql
-            cmd.CommandText = "INSERT INTO produto (descricao, codBarra, codGrupo, precoCusto, precoVenda, dataHoraCadastro, ativo) values(@descricao, @codBarra, @codGrupo, @precoCusto, @precoVenda, @dataHoraCadastro, @ativo)";
-
-            //Passando parametros para SQL
-            cmd.Parameters.AddWithValue("@descricao", descricao);
-            cmd.Parameters.AddWithValue("@codGrupo", int.Parse(codGrupo));
-            cmd.Parameters.AddWithValue("@precoCusto", double.Parse(precoCusto));
-            cmd.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
-            cmd.Parameters.AddWithValue("@dataHoraCadastro", data);
-            cmd.Parameters.AddWithValue("@ativo", ativo);
-
-            //Se o campo Código de barras não for preenchido ele será um null no bd
-            if (codBarra == "")
-            {
-                codBarra = null;
-                cmd.Parameters.AddWithValue("@codBarra", codBarra);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@codBarra", codBarra);
-            }
-
             try
             {
-                //Conectar com BD
-                cmd.Connection = con.conectar();
-                //Executar os comandos SQL
-                cmd.ExecuteNonQuery();
-                //Desconectar
-                con.desconectar();
-                //Mostrar msg Sucesso
-                this.msg = "Cadastrado com Sucesso!";
+                //Fazendo a conexão com o bd e passando a query Insert para inserir os campos desejados
+                Conexao conexao = new Conexao();
+                string insertQuery = "INSERT INTO produto (descricao, codBarra, codGrupo, precoCusto, precoVenda, dataHoraCadastro, ativo) " +
+                                     "values(@descricao, @codBarra, @codGrupo, @precoCusto, @precoVenda, @dataHoraCadastro, @ativo)";
+                MySqlCommand comando = new MySqlCommand(insertQuery, conexao.conectar());
+               
+                //Passando parametros para SQL
+                comando.Parameters.AddWithValue("@descricao", descricao);
+                comando.Parameters.AddWithValue("@codGrupo", int.Parse(codGrupo));
+                comando.Parameters.AddWithValue("@precoCusto", double.Parse(precoCusto));
+                comando.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
+                comando.Parameters.AddWithValue("@dataHoraCadastro", data);
+                comando.Parameters.AddWithValue("@ativo", ativo);
 
+                //Testando o campo codigo de barras, se o mesmo não for preenchido ele será um null no bd
+                if (codBarra == "")
+                {
+                    codBarra = null;
+                    comando.Parameters.AddWithValue("@codBarra", codBarra);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@codBarra", codBarra);
+                }
+ 
+                comando.ExecuteNonQuery(); //Comando de execusao da querya
+                conexao.desconectar(); //Metodo para desconectar do banco de dados
+
+                this.msg = "Cadastrado com Sucesso!";
             }
             catch (MySqlException e)
             {
-                //Mostrar msg de Erro
                 this.msg = "Erro ao se conectar com o banco de dados";
             }
 
