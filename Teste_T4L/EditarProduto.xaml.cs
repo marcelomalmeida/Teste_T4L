@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 
 namespace Teste_T4L.Properties
@@ -35,6 +36,8 @@ namespace Teste_T4L.Properties
                 MySqlCommand cmd = new MySqlCommand(selectQuery, conexao.conectar());
 
                 MySqlDataReader reader = cmd.ExecuteReader();
+
+                //Metodo para pegar o valor exato no banco de dados
                 while (reader.Read())
                 {
                     cbxGrupoProduto.Items.Add(reader.GetString("nome"));
@@ -119,8 +122,9 @@ namespace Teste_T4L.Properties
                     comando.Parameters.AddWithValue("@cod", cod);
 
                     var result = comando.ExecuteScalar();
+                    int resultado = int.Parse(result.ToString());
                     
-                    if (result != null) //Verificar se o produto ja foi usado em alguma venda
+                    if (resultado == 0) //Verificar se o produto ja foi usado em alguma venda
                     {
 
                         //Deletando o produto selecionado.
@@ -150,8 +154,22 @@ namespace Teste_T4L.Properties
             }
             catch (Exception)
             {
-                MessageBox.Show("Produto não pode ser deletado pois já foi usado em Vendas");
+                MessageBox.Show("Erro no processo!!");
             }
+        }
+
+        //Metodo para aceitar apenas numeros no campo Preco
+        private void txtPrecoCusto_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
+        }
+
+        //Metodo para aceitar apenas numeros no campo Preco
+        private void txtPrecoVenda_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
     }
 }

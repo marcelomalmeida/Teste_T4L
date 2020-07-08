@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.SqlServer.Server;
+using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 
 namespace Teste_T4L
@@ -22,9 +23,9 @@ namespace Teste_T4L
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window //MainWindow é a tela de cadastro de produto
+    public partial class CadastrarProd : Window
     {
-        public MainWindow()
+        public CadastrarProd()
         {
             InitializeComponent();
             // Carregar itens no combobox
@@ -116,23 +117,17 @@ namespace Teste_T4L
         }
 
         //Metodo para aceitar apenas numeros no campo Preco
-        private void txtPrecoCusto_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtPrecoCusto_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecoCusto.Text, "[^0-9]"))
-            {
-                MessageBox.Show("Informar o valor");
-                txtPrecoCusto.Clear();
-            }
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
 
         //Metodo para aceitar apenas numeros no campo Preco
-        private void txtPrecoVenda_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtPrecoVenda_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecoVenda.Text, "[^0-9]"))
-            {
-                MessageBox.Show("Informar o valor");
-                txtPrecoVenda.Clear();
-            }
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
     }
 }

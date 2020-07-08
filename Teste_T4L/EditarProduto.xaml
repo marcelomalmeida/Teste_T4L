@@ -6,21 +6,25 @@
         xmlns:local="clr-namespace:Teste_T4L.Properties"
         mc:Ignorable="d"
         Title="Editar Produto" Height="323.409" Width="444.251" WindowStartupLocation="CenterScreen" Background="#FFBFBFBF">
-    <Grid Margin="0,0,13,-4">
-        <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="23" Margin="166,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
-        <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Left" Height="23" Margin="166,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
-        <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Left" Height="23" Margin="166,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
-        <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Left" Height="23" Margin="166,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
-        <Label Content="Descrição" HorizontalAlignment="Left" Margin="62,27,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="73"/>
-        <Label Content="Grupo de Produto" HorizontalAlignment="Left" Margin="21,61,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="129"/>
-        <Label Content="Código de Barras" HorizontalAlignment="Left" Margin="27,95,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="122"/>
-        <Label Content="Preço de Custo" HorizontalAlignment="Left" Margin="40,129,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="108"/>
-        <Label Content="Preço de Venda" HorizontalAlignment="Left" Margin="37,163,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="112"/>
-        <ComboBox x:Name="cbxGrupoProduto" HorizontalAlignment="Left" Margin="166,65,0,0" VerticalAlignment="Top" Width="241" Height="25"/>
-        <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" HorizontalAlignment="Left" Margin="166,208,0,0" VerticalAlignment="Top" Height="18" Width="183"/>
-        <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="27,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnSalvar_Click"/>
-        <Button x:Name="btnDeletar" Content="Deletar" HorizontalAlignment="Left" Margin="166,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnDeletar_Click"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="299,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnCancelar_Click"/>
+    <Grid Margin="0,0,22,-4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="191*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="23" Margin="114,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1"/>
+        <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Left" Height="23" Margin="114,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Grid.Column="1"/>
+        <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Left" Height="23" Margin="114,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" PreviewTextInput="txtPrecoCusto_PreviewTextInput" Grid.Column="1"/>
+        <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Left" Height="23" Margin="114,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" PreviewTextInput="txtPrecoVenda_PreviewTextInput" Grid.Column="1"/>
+        <Label Content="Descrição" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="73" Grid.Column="1"/>
+        <Label Content="Grupo de Produto" HorizontalAlignment="Left" Margin="21,61,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="129" Grid.ColumnSpan="2"/>
+        <Label Content="Código de Barras" HorizontalAlignment="Left" Margin="27,95,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="122" Grid.ColumnSpan="2"/>
+        <Label Content="Preço de Custo" HorizontalAlignment="Left" Margin="40,129,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="108" Grid.ColumnSpan="2"/>
+        <Label Content="Preço de Venda" HorizontalAlignment="Left" Margin="37,163,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="29" Width="112" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cbxGrupoProduto" HorizontalAlignment="Left" Margin="114,65,0,0" VerticalAlignment="Top" Width="241" Height="25" Grid.Column="1"/>
+        <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" HorizontalAlignment="Left" Margin="114,208,0,0" VerticalAlignment="Top" Height="18" Width="183" Grid.Column="1"/>
+        <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="27,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnSalvar_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnDeletar" Content="Deletar" HorizontalAlignment="Left" Margin="114,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnDeletar_Click" Grid.Column="1"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="247,246,0,0" VerticalAlignment="Top" Width="108" Height="23" Click="btnCancelar_Click" Grid.Column="1"/>
 
     </Grid>
 </Window>

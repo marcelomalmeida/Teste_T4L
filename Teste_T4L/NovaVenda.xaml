@@ -1,0 +1,35 @@
+﻿<Window x:Class="Teste_T4L.NovaVenda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Teste_T4L"
+        mc:Ignorable="d"
+        Title="Nova Venda" Height="467" Width="576" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,0" Background="#FFBFBFBF">
+        <TextBox x:Name="txtNomeCliente" HorizontalAlignment="Left" Height="23" Margin="91,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
+        <TextBox x:Name="txtDocCliente" HorizontalAlignment="Left" Height="23" Margin="346,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="43,56,0,0" VerticalAlignment="Top"/>
+        <Label Content="CPF:" HorizontalAlignment="Left" Margin="308,56,0,0" VerticalAlignment="Top"/>
+        <GroupBox Header="Cliente" Height="80" Margin="604,2,-574,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="91,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" KeyDown="txtCodigo_KeyDown"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="37,139,0,0" VerticalAlignment="Top"/>
+        <Label Content="Quantidade:" HorizontalAlignment="Left" Margin="176,139,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="23" Margin="254,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"/>
+        <GroupBox Header="Produto" Height="80" Margin="604,122,-359,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+        <UniformGrid Margin="20,194,21,22">
+            <DataGrid HorizontalAlignment="Left" Height="51" VerticalAlignment="Top" Width="525" Margin="6,0,-6,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Index"/>
+                    <DataGridTextColumn Header="Código"/>
+                    <DataGridTextColumn Header="Descrição"/>
+                    <DataGridTextColumn Header="Preço Venda"/>
+                    <DataGridTextColumn Header="Quantidade"/>
+                    <DataGridTextColumn Header="Total"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </UniformGrid>
+
+    </Grid>
+</Window>

@@ -26,8 +26,8 @@ namespace Teste_T4L
 
         private void btnCadastrarProduto_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow(); //MainWindow é a tela de cadastro de produto
-            mw.Show();
+            CadastrarProd cadProd = new CadastrarProd();
+            cadProd.Show();
             this.Close();
         }
 
@@ -36,6 +36,28 @@ namespace Teste_T4L
             ConsultaProdutos conProd = new ConsultaProdutos();
             conProd.Show();
             this.Close();
+        }
+
+        private void btnFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnNovoPedido_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Deseja informar o nome e/ou CPF do cliente?", "Cliente", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // O Programa aceita pedido de venda sem dados do cliente
+            {
+                DadosCliente dadosCliente = new DadosCliente();
+                dadosCliente.Show();
+                this.Close();
+            }
+            else
+            {
+                NovaVenda novaVenda = new NovaVenda();
+                novaVenda.Show();
+
+                this.Close();
+            }
         }
     }
 }
