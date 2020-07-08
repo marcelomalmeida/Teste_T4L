@@ -28,6 +28,7 @@ namespace Teste_T4L
         public CadastrarProd()
         {
             InitializeComponent();
+            txtDesc.Focus();
             // Carregar itens no combobox
             try
             {

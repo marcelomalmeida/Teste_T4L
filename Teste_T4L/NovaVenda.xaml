@@ -15,7 +15,7 @@
         <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="91,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" KeyDown="txtCodigo_KeyDown"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="37,139,0,0" VerticalAlignment="Top"/>
         <Label Content="Quantidade:" HorizontalAlignment="Left" Margin="176,139,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="23" Margin="254,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"/>
+        <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="23" Margin="254,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" PreviewTextInput="txtQuantidade_PreviewTextInput" KeyDown="txtQuantidade_KeyDown"/>
         <GroupBox Header="Produto" Height="80" Margin="604,122,-359,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
         <UniformGrid Margin="20,194,21,22">
             <DataGrid HorizontalAlignment="Left" Height="51" VerticalAlignment="Top" Width="525" Margin="6,0,-6,0">

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace Teste_T4L
 {
@@ -38,15 +39,28 @@ namespace Teste_T4L
         public DadosCliente()
         {
             InitializeComponent();
+            txtDadoNome.Focus();
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e) //Clicar nesse botão, os valores digitados no txt serão carregados para o formulario de nova venda
         {
             nome = txtDadoNome.Text;
-            cpf = txtDadoCPF.Text;
-            NovaVenda novaVenda = new NovaVenda();
-            novaVenda.Show();
-            this.Close();
+            string str = txtDadoCPF.Text;
+            int valid = str.Length;
+
+            if (valid == 11 ) //Validando numeros CPF
+            {
+                cpf = Convert.ToUInt64(str).ToString(@"000\.000\.000\-00"); //Formatando CPF
+                NovaVenda novaVenda = new NovaVenda();
+                novaVenda.Show();
+                
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("CPF Incorreto");
+            }
+            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e) // clicar no botão para ir para o formulario de nova venda sem carregar nome e documento do cliente
@@ -55,7 +69,13 @@ namespace Teste_T4L
             novaVenda.Show();
 
             this.Close();
+        }
 
+        //Método para aceitar apenas numeros no CPF
+        private void txtDadoCPF_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
         }
     }
 }

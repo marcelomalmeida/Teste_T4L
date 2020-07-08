@@ -27,6 +27,7 @@ namespace Teste_T4L.Properties
         public EditarProduto()
         {
             InitializeComponent();
+            txtDesc.Focus();
 
             try
             {

@@ -13,11 +13,12 @@
         </Grid.ColumnDefinitions>
         <Label Content="Inserir dados do cliente:" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="29" Width="168"/>
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="18,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.059,-1.958" Height="26" Width="45"/>
-        <Label Content="CPF:" HorizontalAlignment="Left" Margin="30,91,0,0" VerticalAlignment="Top" Height="26" Width="33"/>
+        <Label Content="CPF:" HorizontalAlignment="Left" Margin="30,86,0,0" VerticalAlignment="Top" Height="26" Width="33"/>
         <TextBox x:Name="txtDadoNome" HorizontalAlignment="Left" Height="23" Margin="76,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtDadoCPF" HorizontalAlignment="Left" Height="23" Margin="76,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtDadoCPF" MaxLength="11" HorizontalAlignment="Left" Height="23" Margin="76,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtDadoCPF_PreviewTextInput" />
         <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="18,134,0,0" VerticalAlignment="Top" Width="75" Click="btnOK_Click"/>
         <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="129,134,0,0" VerticalAlignment="Top" Width="76" Click="btnCancelar_Click"/>
+        <Label Content="Apenas Numeros" HorizontalAlignment="Left" Margin="73,103,0,0" VerticalAlignment="Top" FontSize="8" Opacity="0.7"/>
 
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 
 namespace Teste_T4L
@@ -23,7 +24,8 @@ namespace Teste_T4L
         public NovaVenda()
         {
             InitializeComponent();
-            
+            txtCodigo.Focus();
+                      
             // Pegando as variaveis globais declaradas no DadosCLiente e colocando eles nas caixas de texto
             string nome = DadosCliente.nome;
             string cpf = DadosCliente.cpf;
@@ -32,7 +34,7 @@ namespace Teste_T4L
             txtDocCliente.Text = cpf;
         }
 
-        //Metodo para reconhecer a tecla enter
+        //Metodo para reconhecer a tecla enter e pesquisar o código
         private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
         {
             string str = e.Key.ToString();
@@ -87,6 +89,29 @@ namespace Teste_T4L
                 }
             }
        
+        }
+
+        private void txtQuantidade_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+        }
+
+        private void txtQuantidade_KeyDown(object sender, KeyEventArgs e)
+        {
+            string str = e.Key.ToString();
+            if (str == "Return")
+            {
+                int n = Convert.ToInt32(txtQuantidade.Text);
+                if (n > 0)
+                {
+                    MessageBox.Show("OK");
+                }
+                else
+                {
+                    MessageBox.Show("Quantidade tem que ser maior que 0");
+                }
+            }
         }
 
     }
