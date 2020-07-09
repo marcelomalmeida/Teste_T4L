@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
         Title="Nova Venda" Height="467" Width="576" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,2,0" Background="#FFBFBFBF">
+    <Grid x:Name="none" Margin="0,0,2,0" Background="#FFBFBFBF">
         <TextBox x:Name="txtNomeCliente" HorizontalAlignment="Left" Height="23" Margin="91,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
         <TextBox x:Name="txtDocCliente" HorizontalAlignment="Left" Height="23" Margin="346,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="43,56,0,0" VerticalAlignment="Top"/>
@@ -17,15 +17,10 @@
         <Label Content="Quantidade:" HorizontalAlignment="Left" Margin="176,139,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="23" Margin="254,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" PreviewTextInput="txtQuantidade_PreviewTextInput" KeyDown="txtQuantidade_KeyDown"/>
         <GroupBox Header="Produto" Height="80" Margin="604,122,-359,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
-        <UniformGrid Margin="20,194,21,22">
-            <DataGrid HorizontalAlignment="Left" Height="51" VerticalAlignment="Top" Width="525" Margin="6,0,-6,0">
+        <UniformGrid Margin="20,194,337,22">
+            <DataGrid x:Name="dataGridPedVenda" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="535" Margin="6,0,-332,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Index"/>
-                    <DataGridTextColumn Header="Código"/>
-                    <DataGridTextColumn Header="Descrição"/>
-                    <DataGridTextColumn Header="Preço Venda"/>
-                    <DataGridTextColumn Header="Quantidade"/>
-                    <DataGridTextColumn Header="Total"/>
+                    
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
+using System.Data;
+using System.Security.Cryptography;
+using System.Reflection;
 
 namespace Teste_T4L
 {
@@ -21,6 +24,7 @@ namespace Teste_T4L
     /// </summary>
     public partial class NovaVenda : Window
     {
+   
         public NovaVenda()
         {
             InitializeComponent();
@@ -32,6 +36,7 @@ namespace Teste_T4L
 
             txtNomeCliente.Text = nome;
             txtDocCliente.Text = cpf;
+
         }
 
         //Metodo para reconhecer a tecla enter e pesquisar o código
@@ -105,7 +110,59 @@ namespace Teste_T4L
                 int n = Convert.ToInt32(txtQuantidade.Text);
                 if (n > 0)
                 {
-                    MessageBox.Show("OK");
+                    MessageBox.Show("Vai entrar no try");
+                    try
+                    {
+                        Conexao conexao = new Conexao();
+                        string selectQuery = "SELECT descricao, precoVenda FROM produto WHERE cod = @cod";
+                        MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
+                        comando.Parameters.AddWithValue("@cod", txtCodigo.Text);
+
+                        comando.CommandType = CommandType.Text;
+                        MySqlDataReader reader = comando.ExecuteReader();
+                        reader.Read();
+                        int index = 1;
+                        string desc = reader.GetString(0);
+                        double prVenda = reader.GetDouble(1);
+                        double valorTotal = prVenda * Convert.ToDouble(txtQuantidade.Text);
+
+                        /*ProdVenda prodVenda = new ProdVenda(index, Convert.ToInt32(txtCodigo.Text), desc, prVenda, Convert.ToDouble(txtQuantidade), valorTotal);
+                        ProdVenda pro = dataGridPedVenda.SelectedItem as ProdVenda;
+                        dataGridPedVenda.Items.Add(desc);*/
+
+                        DataTable table = new DataTable();
+                        DataRow row;
+                        table.Columns.Add("Index", typeof(int));
+                        table.Columns.Add("Cod", typeof(int));
+                        table.Columns.Add("Quantidade", typeof(double));
+                        table.Columns.Add("Descrição", typeof(string));
+                        table.Columns.Add("Valor", typeof(double));
+                        table.Columns.Add("Valor Total", typeof(double));
+                    
+                        /*table.Rows.Add(index, txtCodigo.Text, txtQuantidade.Text, desc, prVenda, valorTotal);
+                        dataGridPedVenda.ItemsSource = table.DefaultView;*/
+
+                        for (int i = 1; i < 10; i++)
+                        {
+                            row = table.NewRow();
+                            row["Index"] = 1;
+                            row["Cod"] = txtCodigo.Text;
+                            row["Quantidade"] = txtQuantidade.Text;
+                            row["Descrição"] = desc;
+                            row["Valor"] = prVenda;
+                            row["Valor Total"] = valorTotal;
+
+                            table.Rows.Add(row);
+                        }
+
+                        dataGridPedVenda.ItemsSource = table.DefaultView;
+
+
+                    }
+                    catch
+                    {
+
+                    }
                 }
                 else
                 {

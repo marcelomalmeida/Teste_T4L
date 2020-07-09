@@ -91,6 +91,7 @@
     <Compile Include="NovaVenda.xaml.cs">
       <DependentUpon>NovaVenda.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProdVenda.cs" />
     <Compile Include="UpdateProduto.cs" />
     <Page Include="ConsultaProdutos.xaml">
       <SubType>Designer</SubType>
