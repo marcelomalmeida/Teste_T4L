@@ -16,6 +16,8 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Security.Cryptography;
 using System.Reflection;
+using MySqlX.XDevAPI.Relational;
+using System.Xml.Schema;
 
 namespace Teste_T4L
 {
@@ -24,18 +26,68 @@ namespace Teste_T4L
     /// </summary>
     public partial class NovaVenda : Window
     {
-   
+        //Declarações de variaveis globais
+        public bool AutoINcrement { get; set; }
+        public bool ReadOnly { get; set; }
+        public double Total { get; set; }
+        public double Subtotal { get; set; }
+
+        DataTable table = new DataTable();
+
         public NovaVenda()
         {
             InitializeComponent();
             txtCodigo.Focus();
-                      
+
             // Pegando as variaveis globais declaradas no DadosCLiente e colocando eles nas caixas de texto
             string nome = DadosCliente.nome;
             string cpf = DadosCliente.cpf;
 
             txtNomeCliente.Text = nome;
             txtDocCliente.Text = cpf;
+
+            //Processo para autoincrementação da coluna Index
+            DataColumn index = new DataColumn();
+            index.ColumnName = "Index";
+            index.DataType = System.Type.GetType("System.Int32");
+            index.AutoIncrement = true;
+            index.AutoIncrementSeed = 1;
+            index.AutoIncrementStep = 1;
+            index.ReadOnly = true;
+
+            DataColumn codigo = new DataColumn();
+            codigo.ColumnName = "Código";
+            codigo.DataType = System.Type.GetType("System.Int32");
+            codigo.ReadOnly = true;
+
+            DataColumn descricao = new DataColumn();
+            descricao.ColumnName = "Descrição";
+            descricao.ReadOnly = true;
+
+            DataColumn quantidade = new DataColumn();
+            quantidade.ColumnName = "Quantidade";
+            quantidade.DataType = System.Type.GetType("System.Decimal");
+            quantidade.ReadOnly = true;
+
+            DataColumn valor = new DataColumn();
+            valor.ColumnName = "Valor Unitário";
+            valor.DataType = System.Type.GetType("System.Decimal");
+            valor.ReadOnly = true;
+
+            DataColumn valorTotal = new DataColumn();
+            valorTotal.ColumnName = "Valor Total";
+            valorTotal.DataType = System.Type.GetType("System.Decimal");
+            valorTotal.ReadOnly = true;
+
+            //Adicionando colunas para a tabela criada
+            table.Columns.Add(index);
+            table.Columns.Add(codigo);
+            table.Columns.Add(descricao);
+            table.Columns.Add(quantidade);
+            table.Columns.Add(valor);
+            table.Columns.Add(valorTotal);
+
+            dataGridPedVenda.ItemsSource = table.DefaultView; //Inserindo colunas no datagrid
 
         }
 
@@ -44,7 +96,7 @@ namespace Teste_T4L
         {
             string str = e.Key.ToString();
 
-            if (str == "Return")
+            if (str == "Return") //Processo para reconhecer a tecla enter
             {
                 try
                 {
@@ -55,7 +107,7 @@ namespace Teste_T4L
                     Conexao conexao = new Conexao();
                     MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
                     comando.Parameters.AddWithValue("@cod", cod);
-                                        
+
                     var result = comando.ExecuteScalar();
                     int resultado = int.Parse(result.ToString());
 
@@ -74,11 +126,11 @@ namespace Teste_T4L
 
                             if (ativo == "True")
                             {
-                                MessageBox.Show("Produto OK");
+                                txtQuantidade.Focus();
                             }
                             else
                             {
-                                MessageBox.Show("Produto nao OK");
+                                MessageBox.Show("Produto não esta ativo!");
                             }
                         }
                     }
@@ -90,86 +142,84 @@ namespace Teste_T4L
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("catch");
+                    MessageBox.Show("Erro no processo!!!");
                 }
             }
-       
+
         }
 
+        //Método para deixar entrar apenas numeros na quantidade
         private void txtQuantidade_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             var textBox = sender as TextBox;
             e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
         }
 
+        //Metodo para reconhecer a tecla enter e inserir os campos nas linhas da tabela
         private void txtQuantidade_KeyDown(object sender, KeyEventArgs e)
         {
-            string str = e.Key.ToString();
+            string str = e.Key.ToString(); //Processo para reconhecer a tecla enter
             if (str == "Return")
             {
-                int n = Convert.ToInt32(txtQuantidade.Text);
-                if (n > 0)
+                int? n = Convert.ToInt32(txtQuantidade.Text);//Processo para aceitar apenas quantidades positivas
+                string s;
+                if (n > 0 && n != null)
                 {
-                    MessageBox.Show("Vai entrar no try");
                     try
                     {
+                        //Fazendo a conexão com o bd e passando a query Select para pegar os valores do bd
                         Conexao conexao = new Conexao();
                         string selectQuery = "SELECT descricao, precoVenda FROM produto WHERE cod = @cod";
                         MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
                         comando.Parameters.AddWithValue("@cod", txtCodigo.Text);
 
+                        //Processo para ler os dados do bd
                         comando.CommandType = CommandType.Text;
                         MySqlDataReader reader = comando.ExecuteReader();
                         reader.Read();
-                        int index = 1;
-                        string desc = reader.GetString(0);
+
+                        string descricao = reader.GetString(0);
                         double prVenda = reader.GetDouble(1);
                         double valorTotal = prVenda * Convert.ToDouble(txtQuantidade.Text);
 
-                        /*ProdVenda prodVenda = new ProdVenda(index, Convert.ToInt32(txtCodigo.Text), desc, prVenda, Convert.ToDouble(txtQuantidade), valorTotal);
-                        ProdVenda pro = dataGridPedVenda.SelectedItem as ProdVenda;
-                        dataGridPedVenda.Items.Add(desc);*/
-
-                        DataTable table = new DataTable();
-                        DataRow row;
-                        table.Columns.Add("Index", typeof(int));
-                        table.Columns.Add("Cod", typeof(int));
-                        table.Columns.Add("Quantidade", typeof(double));
-                        table.Columns.Add("Descrição", typeof(string));
-                        table.Columns.Add("Valor", typeof(double));
-                        table.Columns.Add("Valor Total", typeof(double));
-                    
-                        /*table.Rows.Add(index, txtCodigo.Text, txtQuantidade.Text, desc, prVenda, valorTotal);
-                        dataGridPedVenda.ItemsSource = table.DefaultView;*/
-
-                        for (int i = 1; i < 10; i++)
-                        {
-                            row = table.NewRow();
-                            row["Index"] = 1;
-                            row["Cod"] = txtCodigo.Text;
-                            row["Quantidade"] = txtQuantidade.Text;
-                            row["Descrição"] = desc;
-                            row["Valor"] = prVenda;
-                            row["Valor Total"] = valorTotal;
-
-                            table.Rows.Add(row);
-                        }
-
+                        //Inserindo dados nas linhas da tableda criada
+                        table.Rows.Add(null, Convert.ToInt32(txtCodigo.Text), descricao, Convert.ToDouble(txtQuantidade.Text), prVenda, valorTotal);
                         dataGridPedVenda.ItemsSource = table.DefaultView;
 
+                        //Processo para o adquirir o total do pedido de vendas
+                        foreach (DataRow row in table.Rows)
+                        {
+                            Subtotal = valorTotal + Total;
+
+                        }
+
+                        Total = Subtotal;
+                        txtValorTotal.Text = Total.ToString(); //Adicionando o Subtotal para a caixa de texto
 
                     }
-                    catch
+                    catch (Exception)
                     {
-
+                        MessageBox.Show("Erro no Processo!!!");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Quantidade tem que ser maior que 0");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Quantidade tem que ser maior que 0");
             }
         }
 
+        //Metodo para o botão voltar na tela de pedido
+        private void btnVoltar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Deseja fechar o pedido sem salvar?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                MenuInicial menuinicial = new MenuInicial();
+                menuinicial.Show();
+
+                this.Close();
+            }
+            
+        }
     }
 }

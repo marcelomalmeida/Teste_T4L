@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Nova Venda" Height="467" Width="576" WindowStartupLocation="CenterScreen">
-    <Grid x:Name="none" Margin="0,0,2,0" Background="#FFBFBFBF">
+        Title="Nova Venda" Height="501" Width="576" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="none" Margin="0,0,-22,2" Background="#FFBFBFBF">
         <TextBox x:Name="txtNomeCliente" HorizontalAlignment="Left" Height="23" Margin="91,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
         <TextBox x:Name="txtDocCliente" HorizontalAlignment="Left" Height="23" Margin="346,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="43,56,0,0" VerticalAlignment="Top"/>
@@ -20,11 +20,13 @@
         <UniformGrid Margin="20,194,337,22">
             <DataGrid x:Name="dataGridPedVenda" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="535" Margin="6,0,-332,0">
                 <DataGrid.Columns>
-                    
                 </DataGrid.Columns>
             </DataGrid>
 
         </UniformGrid>
+        <TextBox x:Name="txtValorTotal" HorizontalAlignment="Left" Height="24" Margin="443,430,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="White" Background="White"/>
+        <Label Content="Valor Total:" HorizontalAlignment="Left" Margin="355,430,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="20,430,0,0" VerticalAlignment="Top" Width="75" Click="btnVoltar_Click"/>
 
     </Grid>
 </Window>
