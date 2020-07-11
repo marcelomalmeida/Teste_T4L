@@ -30,8 +30,6 @@ namespace Teste_T4L
                 comando.Parameters.AddWithValue("@dataHora", data);
 
                 comando.ExecuteNonQuery(); //Comando de execusao da query
-
-                MessageBox.Show("Venda efetuada com sucesso!");
             }
             catch (Exception)
             {

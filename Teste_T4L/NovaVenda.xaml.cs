@@ -233,25 +233,24 @@ namespace Teste_T4L
                     Venda venda = new Venda(txtDocCliente.Text, txtNomeCliente.Text, obs, txtValorTotal.Text, DateTime.Now, txtCodigo.Text, txtQuantidade.Text);
                     DataRowView dr = dataGridPedVenda.SelectedItem as DataRowView;
 
-                    MessageBox.Show("Vai entrar no foreach");
-
                     foreach (DataRow row in table.Rows)
                     {
-                        
-                        string codProd = dr["Código"].ToString();
-                        //string quantidade = dr["Quantidade"].ToString();
-                        //string precoVenda = dr[5].ToString();*/
 
-                        //MessageBox.Show(codProd + quantidade);
-                        MessageBox.Show(codProd);
+                        string codProd = row.ItemArray[1].ToString();
+                        string quantidade = row.ItemArray[3].ToString();
+                        string precoVenda = row.ItemArray[4].ToString();
 
-                        //ProdVenda prodVenda = new ProdVenda(codProd, quantidade, precoVenda);
+                        ProdVenda prodVenda = new ProdVenda(codProd, quantidade, precoVenda);
+
                     }
+
+                    MessageBox.Show("Venda finalizada com sucesso!!!");
+
+                    this.Close();
 
                     MenuInicial menuinicial = new MenuInicial();
                     menuinicial.Show();
-
-                    this.Close();
+                    
                 }
             }
             catch(Exception)

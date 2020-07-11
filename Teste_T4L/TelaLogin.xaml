@@ -1,0 +1,19 @@
+﻿<Window x:Class="Teste_T4L.TelaLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Teste_T4L"
+        mc:Ignorable="d"
+        Title="Login" Height="227.31" Width="338.912" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="23" Margin="180,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Teste T4L" HorizontalAlignment="Left" Margin="92,10,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <Label Content="Usuário:" HorizontalAlignment="Left" Margin="118,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.433,0.265"/>
+        <Label Content="Senha:" HorizontalAlignment="Left" Margin="126,109,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="77" Margin="21,72,0,0" VerticalAlignment="Top" Width="74" Source="kisspng-computer-icons-user-profile-login-avatar-yq-5b4930aa628c36.2515079915315232424037.png"/>
+        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="231,153,0,0" VerticalAlignment="Top" Width="69" Height="33" Click="btnEntrar_Click"/>
+        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="180,109,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+
+    </Grid>
+</Window>

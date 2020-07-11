@@ -92,6 +92,9 @@
       <DependentUpon>NovaVenda.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProdVenda.cs" />
+    <Compile Include="TelaLogin.xaml.cs">
+      <DependentUpon>TelaLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateProduto.cs" />
     <Compile Include="Venda.cs" />
     <Page Include="ConsultaProdutos.xaml">
@@ -131,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TelaLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuInicial.xaml.cs">
@@ -166,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="png-transparent-computer-icons-magnifier-magnifying-glass-magnifying-glass-text-share-icon-magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-computer-icons-user-profile-login-avatar-yq-5b4930aa628c36.2515079915315232424037.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
