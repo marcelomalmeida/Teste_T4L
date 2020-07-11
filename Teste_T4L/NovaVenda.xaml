@@ -27,6 +27,7 @@
         <TextBox x:Name="txtValorTotal" HorizontalAlignment="Left" Height="24" Margin="443,430,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="White" Background="White"/>
         <Label Content="Valor Total:" HorizontalAlignment="Left" Margin="355,430,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="20,430,0,0" VerticalAlignment="Top" Width="75" Click="btnVoltar_Click"/>
+        <Button x:Name="btnFinalVenda" Content="Finalizar Venda" HorizontalAlignment="Left" Margin="114,430,0,0" VerticalAlignment="Top" Width="90" Click="btnFinalVenda_Click"/>
 
     </Grid>
 </Window>

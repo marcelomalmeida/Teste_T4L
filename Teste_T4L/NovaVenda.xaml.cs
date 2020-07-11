@@ -27,8 +27,8 @@ namespace Teste_T4L
     public partial class NovaVenda : Window
     {
         //Declarações de variaveis globais
-        public bool AutoINcrement { get; set; }
-        public bool ReadOnly { get; set; }
+        public bool AutoINcrement { get; set; }  //Processo para autoincrementação da coluna Index
+        public bool ReadOnly { get; set; }  //Processo para travar edição do da tabela
         public double Total { get; set; }
         public double Subtotal { get; set; }
 
@@ -46,13 +46,13 @@ namespace Teste_T4L
             txtNomeCliente.Text = nome;
             txtDocCliente.Text = cpf;
 
-            //Processo para autoincrementação da coluna Index
+           
             DataColumn index = new DataColumn();
             index.ColumnName = "Index";
             index.DataType = System.Type.GetType("System.Int32");
-            index.AutoIncrement = true;
-            index.AutoIncrementSeed = 1;
-            index.AutoIncrementStep = 1;
+            index.AutoIncrement = true; //Processo para autoincrementação da coluna Index
+            index.AutoIncrementSeed = 1; //Processo para autoincrementação da coluna Index
+            index.AutoIncrementStep = 1; //Processo para autoincrementação da coluna Index
             index.ReadOnly = true;
 
             DataColumn codigo = new DataColumn();
@@ -152,7 +152,7 @@ namespace Teste_T4L
         private void txtQuantidade_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             var textBox = sender as TextBox;
-            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
 
         //Metodo para reconhecer a tecla enter e inserir os campos nas linhas da tabela
@@ -162,8 +162,7 @@ namespace Teste_T4L
             if (str == "Return")
             {
                 int? n = Convert.ToInt32(txtQuantidade.Text);//Processo para aceitar apenas quantidades positivas
-                string s;
-                if (n > 0 && n != null)
+                if (n > 0)
                 {
                     try
                     {
@@ -202,10 +201,11 @@ namespace Teste_T4L
                         MessageBox.Show("Erro no Processo!!!");
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Quantidade tem que ser maior que 0");
+                else
+                {
+                    MessageBox.Show("Quantidade tem que ser maior que 0");
+                }
+                
             }
         }
 
@@ -220,6 +220,44 @@ namespace Teste_T4L
                 this.Close();
             }
             
+        }
+
+        private void btnFinalVenda_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Deseja finalizar o pedido?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    string obs = "Nada";
+
+                    Venda venda = new Venda(txtDocCliente.Text, txtNomeCliente.Text, obs, txtValorTotal.Text, DateTime.Now, txtCodigo.Text, txtQuantidade.Text);
+                    DataRowView dr = dataGridPedVenda.SelectedItem as DataRowView;
+
+                    MessageBox.Show("Vai entrar no foreach");
+
+                    foreach (DataRow row in table.Rows)
+                    {
+                        
+                        string codProd = dr["Código"].ToString();
+                        //string quantidade = dr["Quantidade"].ToString();
+                        //string precoVenda = dr[5].ToString();*/
+
+                        //MessageBox.Show(codProd + quantidade);
+                        MessageBox.Show(codProd);
+
+                        //ProdVenda prodVenda = new ProdVenda(codProd, quantidade, precoVenda);
+                    }
+
+                    MenuInicial menuinicial = new MenuInicial();
+                    menuinicial.Show();
+
+                    this.Close();
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Erro no processo!!");
+            }
         }
     }
 }

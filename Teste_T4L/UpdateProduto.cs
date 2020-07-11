@@ -45,9 +45,9 @@ namespace Teste_T4L
                 
                 this.msg = "Alterado com sucesso!";
             }
-            catch (MySqlException e)
-            {
-                //Mostrar msg de Erro
+            catch (Exception)
+            { 
+                
                 this.msg = "Erro ao se conectar com o banco de dados";
             }
 
