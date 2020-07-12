@@ -18,6 +18,7 @@ using System.Security.Cryptography;
 using System.Reflection;
 using MySqlX.XDevAPI.Relational;
 using System.Xml.Schema;
+using System.Globalization;
 
 namespace Teste_T4L
 {
@@ -82,8 +83,6 @@ namespace Teste_T4L
             valorTotal.ColumnName = "Valor Total";
             valorTotal.DataType = System.Type.GetType("System.Decimal");
             valorTotal.ReadOnly = true;
-
-            
 
             //Adicionando colunas para a tabela criada
             table.Columns.Add(index);
@@ -168,56 +167,59 @@ namespace Teste_T4L
             string str = e.Key.ToString(); //Processo para reconhecer a tecla enter
             if (str == "Return")
             {
-                int? n = Convert.ToInt32(txtQuantidade.Text);//Processo para aceitar apenas quantidades positivas
-                if (n > 0)
+                if (txtQuantidade.Text == "")//Não aceitar quantidade nula
                 {
-                    MessageBox.Show("Vai entrar no try depois da quantidade");
-                    try
-                    {
-                        //Fazendo a conexão com o bd e passando a query Select para pegar os valores do bd
-                        Conexao conexao = new Conexao();
-                        string selectQuery = "SELECT descricao, precoVenda, unidade FROM produto WHERE cod = @cod";
-                        MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
-                        comando.Parameters.AddWithValue("@cod", txtCodigo.Text);
-                        MessageBox.Show("Passaou do Select");
 
-                        //Processo para ler os dados do bd
-                        comando.CommandType = CommandType.Text;
-                        MySqlDataReader reader = comando.ExecuteReader();
-                        reader.Read();
-
-                        string descricao = reader.GetString(0);
-                        MessageBox.Show(descricao);
-                        double prVenda = reader.GetDouble(1);
-                        MessageBox.Show(prVenda.ToString());
-                        var unidade = reader.GetValue(2);
-                        MessageBox.Show(unidade.ToString());
-                        double valorTotal = prVenda * Convert.ToDouble(txtQuantidade.Text);
-
-                        //Inserindo dados nas linhas da tableda criada
-                        table.Rows.Add(null, Convert.ToInt32(txtCodigo.Text), descricao, Convert.ToDouble(txtQuantidade.Text),unidade, prVenda, valorTotal);
-                        dataGridPedVenda.ItemsSource = table.DefaultView;
-
-                        //Processo para o adquirir o total do pedido de vendas
-                        foreach (DataRow row in table.Rows)
-                        {
-                            Subtotal = valorTotal + Total;
-
-                        }
-
-                        Total = Subtotal;
-                        txtValorTotal.Text = Total.ToString(); //Adicionando o Subtotal para a caixa de texto
-                        txtCodigo.Focus();
-
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Erro no Processo!!!");
-                    }
                 }
                 else
                 {
-                    MessageBox.Show("Quantidade tem que ser maior que 0");
+                    int n = Convert.ToInt32(txtQuantidade.Text);//Processo para aceitar apenas quantidades positivas
+                    if (n > 0)
+                    {
+                        try
+                        {
+                            //Fazendo a conexão com o bd e passando a query Select para pegar os valores do bd
+                            Conexao conexao = new Conexao();
+                            string selectQuery = "SELECT descricao, precoVenda, unidade FROM produto WHERE cod = @cod";
+                            MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
+                            comando.Parameters.AddWithValue("@cod", txtCodigo.Text);
+
+                            //Processo para ler os dados do bd
+                            comando.CommandType = CommandType.Text;
+                            MySqlDataReader reader = comando.ExecuteReader();
+                            reader.Read();
+
+                            string descricao = reader.GetString(0);
+                            double prVenda = reader.GetDouble(1);
+                            var unidade = reader.GetValue(2);
+                            double valorTotal = prVenda * Convert.ToDouble(txtQuantidade.Text);
+                            double qtd = Convert.ToDouble(txtQuantidade.Text);
+
+                            //Inserindo dados nas linhas da tableda criada
+                            table.Rows.Add(null, Convert.ToInt32(txtCodigo.Text), descricao, qtd.ToString("F2"), unidade, prVenda.ToString("F2"), valorTotal.ToString("F2"));
+                            dataGridPedVenda.ItemsSource = table.DefaultView;
+
+                            //Processo para o adquirir o total do pedido de vendas
+                            foreach (DataRow row in table.Rows)
+                            {
+                                Subtotal = valorTotal + Total;
+
+                            }
+
+                            Total = Subtotal;
+                            txtValorTotal.Text = Total.ToString("F2", CultureInfo.InvariantCulture); //Adicionando o Subtotal para a caixa de texto
+                            txtCodigo.Focus();
+
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Erro no Processo!!!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quantidade tem que ser maior que 0");
+                    }
                 }
                 
             }
@@ -236,59 +238,62 @@ namespace Teste_T4L
             
         }
 
+        //Metodo para o botão salvar
         private void btnFinalVenda_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (MessageBox.Show("Deseja finalizar o pedido?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (MessageBox.Show("Deseja finalizar o pedido?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                string obs = txtObs.Text;
+                //Passando os valores dos campos digitados para a classe Venda
+                Venda venda = new Venda(txtDocCliente.Text, txtNomeCliente.Text, obs, txtValorTotal.Text, DateTime.Now, txtCodigo.Text, txtQuantidade.Text);
+                DataRowView dr = dataGridPedVenda.SelectedItem as DataRowView;
+
+                foreach (DataRow row in table.Rows)// Pegando os parametros de cada linha do novo pedido e passando para a classe ProdVenda
                 {
-                    string obs = txtObs.Text;
+                    string codProd = row.ItemArray[1].ToString();
+                    string quantidade = row.ItemArray[3].ToString();
+                    string unidade = row.ItemArray[4].ToString();
+                    string precoVenda = row.ItemArray[5].ToString();
 
-                    //Passando os valores dos campos digitados para a classe Venda
-                    Venda venda = new Venda(txtDocCliente.Text, txtNomeCliente.Text, obs, txtValorTotal.Text, DateTime.Now, txtCodigo.Text, txtQuantidade.Text);
-                    DataRowView dr = dataGridPedVenda.SelectedItem as DataRowView;
-
-                    foreach (DataRow row in table.Rows)// Pegando os parametros de cada linha do novo pedido e passando para a classe ProdVenda
+                    if (String.IsNullOrEmpty(unidade) == true)
                     {
-
-                        string codProd = row.ItemArray[1].ToString();
-                        string quantidade = row.ItemArray[3].ToString();
-                        string unidade = row.ItemArray[3].ToString();
-                        string precoVenda = row.ItemArray[5].ToString();
-
-                        ProdVenda prodVenda = new ProdVenda(codProd, quantidade, unidade, precoVenda);
-
-                    }
-
-                    MessageBox.Show("Venda finalizada com sucesso!!!");
-                    
-
-                    //Iniciar uma nova venda
-                    if (MessageBox.Show("Deseja informar o nome e/ou CPF do cliente para a nova venda?", "Cliente", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // O Programa aceita pedido de venda sem dados do cliente
-                    {
-                        DadosCliente dadosCliente = new DadosCliente();
-                        dadosCliente.Show();
-                        this.Close();
+                        ProdVenda prodVenda = new ProdVenda(codProd, quantidade, precoVenda);
                     }
                     else
                     {
-                        NovaVenda novaVenda = new NovaVenda();
-                        novaVenda.Show();
-                        this.Close();
+                        ProdVenda prodVenda = new ProdVenda(codProd, quantidade, unidade, precoVenda);
                     }
                 }
+
+                MessageBox.Show("Venda finalizada com sucesso!!!");
+                    
+                //Iniciar uma nova venda
+                if (MessageBox.Show("Deseja informar o nome e/ou CPF do cliente para a nova venda?", "Cliente", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // O Programa aceita pedido de venda sem dados do cliente
+                {
+                    DadosCliente dadosCliente = new DadosCliente();
+                    dadosCliente.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    //Zerando os campos dos dados cdo cliente
+                    NovaVenda novaVenda = new NovaVenda();
+                    novaVenda.Show();
+                    novaVenda.txtNomeCliente.Clear();
+                    novaVenda.txtDocCliente.Clear();
+                    this.Close();
+                }
             }
-            catch(Exception)
-            {
-                MessageBox.Show("Erro no processo!!");
-            }
+
         }
 
+        //Método para minimizar a janela
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Maximized;
+            this.WindowState = WindowState.Minimized;
         }
 
+        //Método para maximizar a janela
         private void btnMaximizar_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
@@ -299,6 +304,12 @@ namespace Teste_T4L
             {
                 this.WindowState = WindowState.Normal;
             }
+        }
+
+        //Método para mover a janela com o mouse
+        private void moverJanela_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

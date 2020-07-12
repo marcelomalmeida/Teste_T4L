@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Consultar Produtos" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized">
+        Title="Consultar Produtos" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" MouseLeftButtonDown="moverJanela_MouseLeftButtonDown">
     <Grid Background="#FFBFBFBF" Margin="0,0,-8,-8">
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF323264" HorizontalAlignment="Stretch" Margin="-4,-9,0,624" Height="153" VerticalAlignment="Top"/>
-        <Rectangle Fill="#FF323250" HorizontalAlignment="Left" Margin="-4,144,1145,0" VerticalAlignment="Stretch" Width="225"/>
-        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="61,642,0,0" VerticalAlignment="Top" Width="105" Click="btnVoltar_Click" Height="50" FontSize="20" Background="#FFFFB940"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Stretch" Margin="-4,-9,0,624" Height="153" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Margin="-4,144,1145,0" VerticalAlignment="Stretch" Width="225"/>
+        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="61,642,0,0" VerticalAlignment="Top" Width="105" Click="btnVoltar_Click" Height="50" FontSize="20" Background="#FFFFAF05" Foreground="Black" BorderBrush="{x:Null}"/>
         <DataGrid x:Name="dataGridConsult" HorizontalAlignment="Left" Height="624" Margin="221,144,0,0" VerticalAlignment="Top" Width="1145" IsReadOnly="True" FontSize="25"/>
-        <Button x:Name="btnEditProd" Content="Editar" HorizontalAlignment="Left" Margin="60,486,0,0" VerticalAlignment="Top" Width="105" Click="btnEditProd_Click" Height="50" FontSize="20" Background="#FFFFB940"/>
+        <Button x:Name="btnEditProd" Content="Editar" HorizontalAlignment="Left" Margin="60,486,0,0" VerticalAlignment="Top" Width="105" Click="btnEditProd_Click" Height="50" FontSize="20" Background="#FFFFAF05" Foreground="Black" BorderBrush="{x:Null}"/>
         <Label Content="Consultar Produtos" HorizontalAlignment="Stretch" Margin="55,39,624,588" VerticalAlignment="Stretch" FontSize="50" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FFFFFBFB" Grid.ColumnSpan="2"/>
         <Button x:Name="btnMinimizar" Content="" HorizontalAlignment="Right" Margin="0,20,46,0" VerticalAlignment="Top" Width="28" Background="#FFFFFF47" Height="8" BorderBrush="{x:Null}" Click="btnMinimizar_Click"/>
         <Image HorizontalAlignment="Left" Height="64" Margin="78,567,0,0" VerticalAlignment="Top" Width="71" Source="Go-back-icon.png"/>
         <Image HorizontalAlignment="Left" Height="89" Margin="79,388,0,0" VerticalAlignment="Top" Width="99" Source="kisspng-computer-icons-scalable-vector-graphics-apple-icon-edit-png-icon-blue-pencil-5ab065d43019b7.7432604215215098441971.png"/>
         <Image HorizontalAlignment="Left" Height="95" Margin="66,205,0,0" VerticalAlignment="Top" Width="94" Source="lista-de-controle.png"/>
         <Rectangle HorizontalAlignment="Right" Height="18" Margin="0,12,13,0" VerticalAlignment="Top" Width="18" Stroke="#FF46E6FF"/>
-        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,15,16,0" VerticalAlignment="Top" Width="18" Background="#FF323264" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
-        <Button x:Name="btnCarrProd" Content="Listar" HorizontalAlignment="Left" Margin="61,318,0,0" VerticalAlignment="Top" Width="105" Click="btnCarrProd_Click" Height="50" FontSize="20" Background="#FFFFB940"/>
+        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,15,16,0" VerticalAlignment="Top" Width="18" Background="Black" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
+        <Button x:Name="btnCarrProd" Content="Listar" HorizontalAlignment="Left" Margin="61,318,0,0" VerticalAlignment="Top" Width="105" Click="btnCarrProd_Click" Height="50" FontSize="20" Background="#FFFFAF05" Foreground="Black" BorderBrush="{x:Null}"/>
     </Grid>
 </Window>

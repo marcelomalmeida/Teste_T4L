@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
         Title="Login" Height="300" Width="500" WindowStartupLocation="CenterScreen" OpacityMask="Black" Background="#FFBFBFBF" WindowStyle="None">
-    <Grid Background="#FF323264" Height="292" VerticalAlignment="Stretch">
+    <Grid Background="#FF323232" Height="292" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="23" Margin="301,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.Row="1" TabIndex="0"/>
-        <Label Content="Teste T4L" HorizontalAlignment="Left" Margin="158,6,0,0" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="White" Width="187" Height="63" Grid.Row="1"/>
+        <Label Content="Teste T4L" HorizontalAlignment="Left" Margin="158,6,0,0" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="White" Width="187" Height="63" Grid.Row="1" Background="{x:Null}"/>
         <Label Content="Usuário:" HorizontalAlignment="Left" Margin="232,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.433,0.265" Foreground="White" FontSize="14" Grid.Row="1" Height="29" Width="60"/>
         <Label Content="Senha:" HorizontalAlignment="Left" Margin="241,150,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Grid.Row="1" Height="29" Width="51"/>
-        <Image HorizontalAlignment="Left" Height="146" Margin="44,79,0,0" VerticalAlignment="Top" Width="158" Source="clipart224447.png" Grid.Row="1"/>
-        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="301,189,0,0" VerticalAlignment="Top" Width="69" Height="21" Click="btnEntrar_Click" BorderBrush="{x:Null}" Background="#FFFFB940" Foreground="Black" Grid.Row="1" TabIndex="2"/>
+        <Image HorizontalAlignment="Left" Height="146" Margin="44,79,0,0" VerticalAlignment="Top" Width="158" Source="icone-cadeado.png" Grid.Row="1"/>
+        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="301,189,0,0" VerticalAlignment="Top" Width="69" Height="21" Click="btnEntrar_Click" BorderBrush="{x:Null}" Background="#FFFFAF05" Foreground="Black" Grid.Row="1" TabIndex="2"/>
         <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="301,152,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="1" TabIndex="1"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="382,189,0,0" VerticalAlignment="Top" Width="69" Height="21" Background="#FFFFB940" Click="btnCancelar_Click" Grid.Row="1" TabIndex="3"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="382,189,0,0" VerticalAlignment="Top" Width="69" Height="21" Background="#FFFFAF05" Click="btnCancelar_Click" Grid.Row="1" TabIndex="3" Foreground="Black" BorderBrush="{x:Null}"/>
     </Grid>
 </Window>

@@ -36,9 +36,13 @@ namespace Teste_T4L
             set { _cpf = value; }
         }
 
+        MenuInicial menuInicial = new MenuInicial();
+
         public DadosCliente()
         {
+            menuInicial.Show();
             InitializeComponent();
+            
             txtDadoNome.Focus();
         }
 
@@ -53,8 +57,9 @@ namespace Teste_T4L
                 cpf = Convert.ToUInt64(str).ToString(@"000\.000\.000\-00"); //Formatando CPF
                 NovaVenda novaVenda = new NovaVenda();
                 novaVenda.Show();
-                
+
                 this.Close();
+                menuInicial.Close();
             }
             else if (str == "")
             {
@@ -62,6 +67,7 @@ namespace Teste_T4L
                 novaVenda.Show();
 
                 this.Close();
+                menuInicial.Close();
             }
             else
             {
@@ -72,9 +78,6 @@ namespace Teste_T4L
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e) // clicar no botão para ir para o formulario de nova venda sem carregar nome e documento do cliente
         {
-            NovaVenda novaVenda = new NovaVenda();
-            novaVenda.Show();
-
             this.Close();
         }
 

@@ -53,10 +53,10 @@ namespace Teste_T4L
                 MessageBox.Show("Erro no Processo!!!");
             }
 
-            cbxUnidade.ItemsSource = Enum.GetValues(typeof(Unidade)); //Careegar o combox com as unidades
+            cbxUnidade.ItemsSource = Enum.GetValues(typeof(Unidade)); //Carregar o combox com as unidades
         }
 
-        //Botao Cadastar
+        //Metodo para cadastrar um novo produto
         private void btnCadastrar_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -137,11 +137,13 @@ namespace Teste_T4L
             e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
 
+        //Mwtodo para minimizar a janela
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
+        //Mwtodo para Maximizar a janela
         private void btnMaximizar_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
@@ -152,7 +154,12 @@ namespace Teste_T4L
             {
                 this.WindowState = WindowState.Normal;
             }
-            
+        }
+
+        //Metodo para mover a naela com o mouse
+        private void moverJanela_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

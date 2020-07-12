@@ -38,6 +38,7 @@ namespace Teste_T4L
             InitializeComponent();
         }
 
+        //Metodo para voltar para o menu inicial
         private void btnVoltar_Click(object sender, RoutedEventArgs e)
         {
             MenuInicial mInicial = new MenuInicial();
@@ -45,6 +46,7 @@ namespace Teste_T4L
             this.Close();
         }
 
+        //Metodo para carregar os produtos do BD no Datagrid
         private void btnCarrProd_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -66,9 +68,9 @@ namespace Teste_T4L
             }
         }
 
+        //Metodo para Carregar tela de edição de produtos conforme linha selecionada no dataGrid
         private void btnEditProd_Click(object sender, RoutedEventArgs e)
         {
-            //Carregar tela de edição de produtos conforme linha selecionada no dataGrid
             try
             {
                 EditarProduto editProd = new EditarProduto();
@@ -130,11 +132,13 @@ namespace Teste_T4L
 
         }
 
+        //Metodo para Minimizar a janela
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
+        //Metodo para Maximizar a janela
         private void btnMaximizar_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
@@ -145,6 +149,12 @@ namespace Teste_T4L
             {
                 this.WindowState = WindowState.Normal;
             }
+        }
+
+        //Metodo para mover a janela com o mouse
+        private void moverJanela_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 

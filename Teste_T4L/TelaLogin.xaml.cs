@@ -28,6 +28,7 @@ namespace Teste_T4L
             txtLogin.Focus();
         }
 
+        //Metodo para entrar no programa
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -64,6 +65,7 @@ namespace Teste_T4L
             }
         }
 
+        //Botão para cnacelar e fechar o programa
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

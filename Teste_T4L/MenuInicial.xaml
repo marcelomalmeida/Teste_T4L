@@ -5,26 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Menu Inicial" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="#FFBFBFBF" WindowStyle="None">
+        Title="Menu Inicial" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="#FFBFBFBF" WindowStyle="None" MouseLeftButtonDown="moverJanela_MouseLeftButtonDown">
     <Grid>
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FF323264" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="148"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="148"/>
         <Button x:Name="btnCadastrarProduto" Height="64" Width="370
-                " Content="Cadastrar Produto" Margin="55,557,929,139" Click="btnCadastrarProduto_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="40" Background="#FF323264" Foreground="White" BorderBrush="#FF323264"/>
-        <Button x:Name="btnConsultProd" Height="64" Width="370" Content="Consultar Produtos" HorizontalAlignment="Stretch" Margin="496,557,492,139" VerticalAlignment="Stretch" Click="btnConsultProd_Click" FontSize="40" Foreground="White" BorderBrush="#FF323264" Background="#FF323264"/>
+                " Content="Cadastrar Produto" Margin="55,557,929,139" Click="btnCadastrarProduto_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="40" Background="#FFFFAF05" Foreground="Black" BorderBrush="{x:Null}"/>
+        <Button x:Name="btnConsultProd" Height="64" Width="370" Content="Consultar Produtos" HorizontalAlignment="Stretch" Margin="496,557,492,139" VerticalAlignment="Stretch" Click="btnConsultProd_Click" FontSize="40" Foreground="Black" BorderBrush="{x:Null}" Background="#FFFFAF05"/>
         <Button x:Name="btnFechar" Width="25" Content="" HorizontalAlignment="Right" Margin="0,14,15,0" VerticalAlignment="Top" Click="btnFechar_Click" FontSize="30" Height="25" BorderBrush="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="kisspng-x-mark-check-mark-desktop-wallpaper-clip-art-x-mark-5ac194d4bec907.7595189015226359887815.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnNovoPedido" Height="64" Width="370" Content="Nova Venda" HorizontalAlignment="Stretch" Margin="930,557,54,139" VerticalAlignment="Stretch" Click="btnNovoPedido_Click" FontSize="40" BorderBrush="#FF323264" Background="#FF323264" Foreground="White"/>
+        <Button x:Name="btnNovoPedido" Height="64" Width="370" Content="Nova Venda" HorizontalAlignment="Stretch" Margin="930,557,54,139" VerticalAlignment="Stretch" Click="btnNovoPedido_Click" FontSize="40" BorderBrush="{x:Null}" Background="#FFFFAF05" Foreground="Black"/>
         <Label Content="Menu Inicial" HorizontalAlignment="Stretch" Margin="55,39,974,580" VerticalAlignment="Stretch" FontSize="50" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FFFFFBFB"/>
         <Image HorizontalAlignment="Stretch" Height="300" Margin="924,242,60,218" VerticalAlignment="Stretch" Width="374" Source="kisspng-computer-icons-shopping-cart-software-purchasing-d-shopping-cart-5b1031ca110c53.9812129415277879780698.png"/>
         <Image HorizontalAlignment="Stretch" Height="288" Margin="55,237,929,235" VerticalAlignment="Stretch" Width="374" Source="free-rewards-on-groceries-fetch-rewards-products-png-1045_837 (1).png"/>
         <Image HorizontalAlignment="Stretch" Height="263" Margin="576,237,554,260" VerticalAlignment="Stretch" Width="227" Source="PngItem_4765430.png"/>
         <Button x:Name="btnMinimizar" Content="" HorizontalAlignment="Right" Margin="0,23,81,0" VerticalAlignment="Top" Width="29" Background="#FFFFFF47" Height="8" BorderBrush="{x:Null}" Click="btnMinimizar_Click"/>
         <Rectangle HorizontalAlignment="Right" Height="18" Margin="0,16,49,0" VerticalAlignment="Top" Width="18" Stroke="#FF46E6FF"/>
-        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,19,52,0" VerticalAlignment="Top" Width="18" Background="#FF323264" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
+        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,19,52,0" VerticalAlignment="Top" Width="18" Background="Black" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
     </Grid>
 </Window>

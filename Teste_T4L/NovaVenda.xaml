@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Nova Venda" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Background="#FFBFBFBF">
+        Title="Nova Venda" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Background="#FFBFBFBF" MouseLeftButtonDown="moverJanela_MouseLeftButtonDown">
     <Grid>
-        <Rectangle Fill="#FF323264" HorizontalAlignment="Stretch" Height="148" VerticalAlignment="Top" Margin="0,0,-2,0"/>
-        <Rectangle Fill="#FF323250" HorizontalAlignment="Left" Margin="-4,148,0,0" VerticalAlignment="Stretch" Width="225"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Stretch" Height="148" VerticalAlignment="Top" Margin="0,0,-2,0"/>
+        <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Margin="-4,148,0,0" VerticalAlignment="Stretch" Width="225"/>
         <Rectangle HorizontalAlignment="Right" Height="18" Margin="0,12,16,0" VerticalAlignment="Top" Width="18" Stroke="#FF46E6FF"/>
         <Label Content="Nova Venda" HorizontalAlignment="Stretch" Margin="55,39,916,582" VerticalAlignment="Stretch" FontSize="50" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FFFFFBFB"/>
-        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,15,19,0" VerticalAlignment="Top" Width="18" Background="#FF323264" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
+        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,15,19,0" VerticalAlignment="Top" Width="18" Background="Black" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
         <TextBox x:Name="txtNomeCliente" HorizontalAlignment="Left" Height="37" Margin="365,211,496,514" TextWrapping="Wrap" VerticalAlignment="Top" Width="499" IsEnabled="False" FontSize="20"/>
         <TextBox x:Name="txtDocCliente" HorizontalAlignment="Left" Height="37" Margin="966,211,48,514" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" IsEnabled="False" FontSize="20"/>
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="295,209,995,510" VerticalAlignment="Top" FontSize="20"/>
@@ -28,8 +28,8 @@
         <Image HorizontalAlignment="Left" Height="71" Margin="66,385,0,0" VerticalAlignment="Top" Width="80" Source="Go-back-icon.png"/>
         <TextBox x:Name="txtValorTotal" HorizontalAlignment="Left" Height="50" Margin="1172,693,42,19" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" IsEnabled="False" BorderBrush="White" Background="White" FontSize="30" TextAlignment="Left"/>
         <Label Content="Valor Total:" HorizontalAlignment="Left" Margin="966,684,199,25" VerticalAlignment="Top" FontSize="35" FontWeight="Bold"/>
-        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="55,468,0,0" VerticalAlignment="Top" Width="105" Click="btnVoltar_Click" Background="#FFFFB940" FontSize="20" Height="47"/>
-        <Button x:Name="btnFinalVenda" Content="Finalizar" HorizontalAlignment="Left" Margin="55,318,0,0" VerticalAlignment="Top" Width="105" Click="btnFinalVenda_Click" Height="47" FontSize="20" Background="#FFFFB940"/>
+        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="55,468,0,0" VerticalAlignment="Top" Width="105" Click="btnVoltar_Click" Background="#FFFFAF05" FontSize="20" Height="47" Foreground="Black" BorderBrush="{x:Null}"/>
+        <Button x:Name="btnFinalVenda" Content="Finalizar" HorizontalAlignment="Left" Margin="55,318,0,0" VerticalAlignment="Top" Width="105" Click="btnFinalVenda_Click" Height="47" FontSize="20" Background="#FFFFAF05" Foreground="Black" BorderBrush="{x:Null}"/>
         <GroupBox Header="Cliente" HorizontalAlignment="Left" Height="100" Margin="238,171,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Width="1078"/>
         <TextBox x:Name="txtObs" HorizontalAlignment="Left" Height="348" Margin="972,294,42,120" TextWrapping="Wrap" Text="Observação:" VerticalAlignment="Top" Width="346" FontSize="20"/>
 

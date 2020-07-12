@@ -56,7 +56,7 @@ namespace Teste_T4L.Properties
             cbxUnidade.ItemsSource = Enum.GetValues(typeof(Unidade)); //Carregar combobox com as unidades
         }
 
-        //Botão canceçar para voltar a tela de consulta de itens
+        //Botão cancelar para voltar a tela de consulta de itens
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             ConsultaProdutos consultProd = new ConsultaProdutos();
@@ -64,7 +64,8 @@ namespace Teste_T4L.Properties
             this.Close();
         }
 
-        private void btnSalvar_Click(object sender, RoutedEventArgs e) //Salvar edição e passar para a classe Updateproduto para efutar a alteração no bd
+        //Salvar edição e passar para a classe Updateproduto para efutar a alteração no bd
+        private void btnSalvar_Click(object sender, RoutedEventArgs e) 
         {
             try
             {
@@ -109,7 +110,8 @@ namespace Teste_T4L.Properties
 
         }
 
-        private void btnDeletar_Click(object sender, RoutedEventArgs e)//Botão para deletar produtos no banco de dados
+        //Botão para deletar produtos no banco de dados
+        private void btnDeletar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -175,11 +177,13 @@ namespace Teste_T4L.Properties
             e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
 
+        //Metodo para minimizar a janela
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
+        //Metodo para maximizar a janela
         private void btnMaximizar_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
@@ -190,6 +194,12 @@ namespace Teste_T4L.Properties
             {
                 this.WindowState = WindowState.Normal;
             }
+        }
+
+        //Metodo para mover a janela com o mouse
+        private void moverJanela_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

@@ -26,14 +26,14 @@ namespace Teste_T4L
                 comando.Parameters.AddWithValue("@clienteDocumento", clienteDocumento);
                 comando.Parameters.AddWithValue("@clienteNome", clienteNome);
                 comando.Parameters.AddWithValue("@obs", obs);
-                comando.Parameters.AddWithValue("@total", double.Parse(total));
+                comando.Parameters.AddWithValue("@total", total);
                 comando.Parameters.AddWithValue("@dataHora", data);
 
                 comando.ExecuteNonQuery(); //Comando de execusao da query
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro no processo!!!!");
+                MessageBox.Show("Erro no Processo!!!");
             }
         }
     }

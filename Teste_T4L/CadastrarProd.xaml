@@ -5,24 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Cadastro de Produto" Height="768" Width="1366" FontSize="14" WindowStartupLocation="CenterScreen" Background="#FFBFBFBF" BorderBrush="Black" WindowStyle="None" WindowState="Maximized">
+        Title="Cadastro de Produto" Height="768" Width="1366" FontSize="14" WindowStartupLocation="CenterScreen" Background="#FFBFBFBF" BorderBrush="Black" WindowStyle="None" WindowState="Maximized" MouseLeftButtonDown="moverJanela_MouseLeftButtonDown" >
     <Grid Margin="0,0,2,-2">
-        <Rectangle Fill="#FF323250" HorizontalAlignment="Left" Margin="-4,148,1135,0" VerticalAlignment="Stretch" Width="225"/>
+        <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Margin="-4,148,1135,0" VerticalAlignment="Stretch" Width="225"/>
         <TextBox x:Name="txtDesc" HorizontalAlignment="Stretch" Height="53" Margin="686,225,115,484" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="555" FontSize="30" TextAlignment="Left" TabIndex="0"/>
         <TextBox x:Name="txtCodBarra" MaxLength="10" HorizontalAlignment="Stretch" Height="53" Margin="688,378,112,331" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="555" FontSize="30" TabIndex="2"/>
         <TextBox x:Name="txtPrecoCusto" HorizontalAlignment="Stretch" Height="53" Margin="686,455,458,254" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="212" PreviewTextInput="txtPrecoCusto_PreviewTextInput" FontSize="30" TabIndex="3"/>
         <TextBox x:Name="txtPrecoVenda" HorizontalAlignment="Stretch" Height="53" Margin="688,527,456,182" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="212" PreviewTextInput="txtPrecoCusto_PreviewTextInput" FontSize="30" TabIndex="4"/>
-        <Button x:Name="btnCadastrar" Content="Salvar" HorizontalAlignment="Left" Margin="60,318,0,0" VerticalAlignment="Top" Width="105" Click="btnCadastrar_Click_1" Height="47" BorderBrush="{x:Null}" Background="#FFFFB940" FontSize="20"/>
-        <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="60,486,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.261,-0.068" Click="btnLimpar_Click_1" Height="47" Background="#FFFFB940" FontSize="20"/>
+        <Button x:Name="btnCadastrar" Content="Salvar" HorizontalAlignment="Left" Margin="60,318,0,0" VerticalAlignment="Top" Width="105" Click="btnCadastrar_Click_1" Height="47" BorderBrush="{x:Null}" Background="#FFFFAF05" FontSize="20" Foreground="Black"/>
+        <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="60,486,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.261,-0.068" Click="btnLimpar_Click_1" Height="47" Background="#FFFFAF05" FontSize="20" Foreground="Black" BorderBrush="{x:Null}"/>
         <Label Content="Descrição:" HorizontalAlignment="Stretch" Margin="470,217,706,492" VerticalAlignment="Stretch" FontWeight="Bold" Height="53" Width="180" FontSize="35"/>
-        <Label Content="Grupo de Produto:" HorizontalAlignment="Stretch" Margin="330,292,703,416" VerticalAlignment="Stretch" FontWeight="Bold" Height="54" Width="323" FontSize="35"/>
-        <Label Content="Código de Barras:" HorizontalAlignment="Stretch" Margin="347,370,706,331" VerticalAlignment="Stretch" FontWeight="Bold" Width="303" FontSize="35"/>
+        <Label Content="Grupo de Produto:" HorizontalAlignment="Stretch" Margin="330,294,703,414" VerticalAlignment="Stretch" FontWeight="Bold" Height="54" Width="323" FontSize="35"/>
         <Label Content="Preço de Custo:" HorizontalAlignment="Stretch" Margin="382,448,710,254" VerticalAlignment="Stretch" FontWeight="Bold" Height="60" Width="264" FontSize="35"/>
         <Label Content="Preço de Venda:" HorizontalAlignment="Stretch" Margin="374,519,705,172" VerticalAlignment="Stretch" FontWeight="Bold" Height="71" Width="277" FontSize="35"/>
         <ComboBox x:Name="cbxGrupoProduto" HorizontalAlignment="Stretch" Margin="688,299,112,410" VerticalAlignment="Stretch" Width="556" Height="53" BorderBrush="{x:Null}" FontSize="30" TabIndex="1"/>
-        <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" HorizontalAlignment="Stretch" Margin="686,594,118,97" VerticalAlignment="Stretch" Height="71" Width="552" FontSize="35" FontWeight="Bold" TabIndex="6"/>
-        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="60,649,0,0" VerticalAlignment="Top" Width="108" Click="btnVoltar_Click" Height="47" Background="#FFFFB940" FontSize="20"/>
-        <Rectangle Fill="#FF323264" HorizontalAlignment="Stretch" Margin="0,0,-2,0" Height="148" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxAtivo" Content="Ativar Produto para Venda" HorizontalAlignment="Stretch" Margin="686,594,118,97" VerticalAlignment="Stretch" Height="71" Width="552" FontSize="35" FontWeight="Bold" TabIndex="6" Padding="4,-5,0,0" />
+        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="60,649,0,0" VerticalAlignment="Top" Width="108" Click="btnVoltar_Click" Height="47" Background="#FFFFAF05" FontSize="20" Foreground="Black" BorderBrush="{x:Null}"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Stretch" Margin="0,0,-2,0" Height="148" VerticalAlignment="Top"/>
         <Label Content="Novo Produto" HorizontalAlignment="Stretch" Margin="55,39,932,582" VerticalAlignment="Stretch" FontSize="50" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FFFFFBFB"/>
         <Image HorizontalAlignment="Left" Height="86" Margin="76,211,0,0" VerticalAlignment="Top" Width="76" Source="Save_37110.png"/>
         <Image HorizontalAlignment="Left" Height="64" Margin="78,573,0,0" VerticalAlignment="Top" Width="71" Source="Go-back-icon.png"/>
@@ -31,6 +30,7 @@
         <Label Content="Unidade:" HorizontalAlignment="Stretch" Margin="954,448,235,254" VerticalAlignment="Stretch" FontSize="35" FontWeight="Bold" Width="167" Height="60"/>
         <ComboBox x:Name="cbxUnidade" HorizontalAlignment="Stretch" Margin="1121,456,115,253" VerticalAlignment="Stretch" Width="120" Height="53" FontSize="30" TabIndex="5"/>
         <Rectangle HorizontalAlignment="Right" Height="18" Margin="0,12,12,0" VerticalAlignment="Top" Width="18" Stroke="#FF46E6FF"/>
-        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="18" Background="#FF323264" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
+        <Button x:Name="btnMaximizar" Content="" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="18" Background="Black" Foreground="{x:Null}" BorderBrush="#FF46E6FF" Height="18" Click="btnMaximizar_Click"/>
+        <Label Content="Código de Barras:" HorizontalAlignment="Stretch" Margin="347,377,686,331" VerticalAlignment="Stretch" FontWeight="Bold" Height="54" Width="323" FontSize="35"/>
     </Grid>
 </Window>
