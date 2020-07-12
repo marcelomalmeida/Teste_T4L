@@ -13,14 +13,14 @@ namespace Teste_T4L
     class CadastroProduto
     {
         
-        public CadastroProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, DateTime data, int ativo)
+        public CadastroProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, DateTime data, int ativo, string unidade)
         {
             try
             {
                 //Fazendo a conexão com o bd e passando a query Insert para inserir os campos desejados
                 Conexao conexao = new Conexao();
-                string insertQuery = "INSERT INTO produto (descricao, codBarra, codGrupo, precoCusto, precoVenda, dataHoraCadastro, ativo) " +
-                                     "values(@descricao, @codBarra, @codGrupo, @precoCusto, @precoVenda, @dataHoraCadastro, @ativo)";
+                string insertQuery = "INSERT INTO produto (descricao, codBarra, codGrupo, precoCusto, precoVenda, dataHoraCadastro, ativo, unidade) " +
+                                     "values(@descricao, @codBarra, @codGrupo, @precoCusto, @precoVenda, @dataHoraCadastro, @ativo, @unidade)";
                 MySqlCommand comando = new MySqlCommand(insertQuery, conexao.conectar());
                
                 //Passando parametros para SQL
@@ -30,6 +30,7 @@ namespace Teste_T4L
                 comando.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
                 comando.Parameters.AddWithValue("@dataHoraCadastro", data);
                 comando.Parameters.AddWithValue("@ativo", ativo);
+                comando.Parameters.AddWithValue("@unidade", unidade);
 
                 //Testando o campo codigo de barras, se o mesmo não for preenchido ele será um null no bd
                 if (codBarra == "")

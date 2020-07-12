@@ -66,5 +66,17 @@ namespace Teste_T4L
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void btnMaximizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
+        }
     }
 }

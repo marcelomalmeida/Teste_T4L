@@ -52,7 +52,7 @@ namespace Teste_T4L
                 //Fazendo a conexão com o bd e passando a query Select para pegar os valores e colocar no dataGrids
                 Conexao conexao = new Conexao();
                 string selectQuery = "SELECT PRODUTO.cod as Código, PRODUTO.descricao as Descrição, PRODUTO_GRUPO.nome as Grupo, " +
-                                     "PRODUTO.precoCusto as PrecoCusto, PRODUTO.precoVenda as PrecoVenda, PRODUTO.ativo as Ativo FROM " +
+                                     "PRODUTO.precoCusto as PrecoCusto, PRODUTO.precoVenda as PrecoVenda, PRODUTO.ativo as Ativo, PRODUTO.unidade as Unidade FROM " +
                                      "PRODUTO INNER JOIN PRODUTO_GRUPO ON PRODUTO.codGrupo = PRODUTO_GRUPO.cod ORDER BY 1";
                 DataTable table = new DataTable();
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(selectQuery, conexao.conectar());
@@ -85,6 +85,7 @@ namespace Teste_T4L
                     editProd.txtPrecoVenda.Text = dr["precoVenda"].ToString();
                     editProd.cbxGrupoProduto.Text = dr["Grupo"].ToString();
                     cod = dr["Código"].ToString();
+                    editProd.cbxUnidade.Text = dr["Unidade"].ToString();
 
                     ConsultaProdutos.codigo = cod; //Passando o valor do codigo para a variavel global
 
@@ -132,6 +133,18 @@ namespace Teste_T4L
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
         }
     }
 

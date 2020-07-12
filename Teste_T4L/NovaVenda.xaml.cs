@@ -69,6 +69,10 @@ namespace Teste_T4L
             quantidade.DataType = System.Type.GetType("System.Decimal");
             quantidade.ReadOnly = true;
 
+            DataColumn unidade = new DataColumn();
+            unidade.ColumnName = "Unidade";
+            unidade.ReadOnly = true;
+
             DataColumn valor = new DataColumn();
             valor.ColumnName = "Valor Unitário";
             valor.DataType = System.Type.GetType("System.Decimal");
@@ -79,14 +83,17 @@ namespace Teste_T4L
             valorTotal.DataType = System.Type.GetType("System.Decimal");
             valorTotal.ReadOnly = true;
 
+            
+
             //Adicionando colunas para a tabela criada
             table.Columns.Add(index);
             table.Columns.Add(codigo);
             table.Columns.Add(descricao);
             table.Columns.Add(quantidade);
+            table.Columns.Add(unidade);
             table.Columns.Add(valor);
             table.Columns.Add(valorTotal);
-
+            
             dataGridPedVenda.ItemsSource = table.DefaultView; //Inserindo colunas no datagrid
 
         }
@@ -164,13 +171,15 @@ namespace Teste_T4L
                 int? n = Convert.ToInt32(txtQuantidade.Text);//Processo para aceitar apenas quantidades positivas
                 if (n > 0)
                 {
+                    MessageBox.Show("Vai entrar no try depois da quantidade");
                     try
                     {
                         //Fazendo a conexão com o bd e passando a query Select para pegar os valores do bd
                         Conexao conexao = new Conexao();
-                        string selectQuery = "SELECT descricao, precoVenda FROM produto WHERE cod = @cod";
+                        string selectQuery = "SELECT descricao, precoVenda, unidade FROM produto WHERE cod = @cod";
                         MySqlCommand comando = new MySqlCommand(selectQuery, conexao.conectar());
                         comando.Parameters.AddWithValue("@cod", txtCodigo.Text);
+                        MessageBox.Show("Passaou do Select");
 
                         //Processo para ler os dados do bd
                         comando.CommandType = CommandType.Text;
@@ -178,11 +187,15 @@ namespace Teste_T4L
                         reader.Read();
 
                         string descricao = reader.GetString(0);
+                        MessageBox.Show(descricao);
                         double prVenda = reader.GetDouble(1);
+                        MessageBox.Show(prVenda.ToString());
+                        var unidade = reader.GetValue(2);
+                        MessageBox.Show(unidade.ToString());
                         double valorTotal = prVenda * Convert.ToDouble(txtQuantidade.Text);
 
                         //Inserindo dados nas linhas da tableda criada
-                        table.Rows.Add(null, Convert.ToInt32(txtCodigo.Text), descricao, Convert.ToDouble(txtQuantidade.Text), prVenda, valorTotal);
+                        table.Rows.Add(null, Convert.ToInt32(txtCodigo.Text), descricao, Convert.ToDouble(txtQuantidade.Text),unidade, prVenda, valorTotal);
                         dataGridPedVenda.ItemsSource = table.DefaultView;
 
                         //Processo para o adquirir o total do pedido de vendas
@@ -240,9 +253,10 @@ namespace Teste_T4L
 
                         string codProd = row.ItemArray[1].ToString();
                         string quantidade = row.ItemArray[3].ToString();
-                        string precoVenda = row.ItemArray[4].ToString();
+                        string unidade = row.ItemArray[3].ToString();
+                        string precoVenda = row.ItemArray[5].ToString();
 
-                        ProdVenda prodVenda = new ProdVenda(codProd, quantidade, precoVenda);
+                        ProdVenda prodVenda = new ProdVenda(codProd, quantidade, unidade, precoVenda);
 
                     }
 
@@ -272,7 +286,19 @@ namespace Teste_T4L
 
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
+            this.WindowState = WindowState.Maximized;
+        }
 
+        private void btnMaximizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
         }
     }
 }

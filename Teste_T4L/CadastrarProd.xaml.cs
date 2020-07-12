@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Microsoft.SqlServer.Server;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
+using Teste_T4L.Entities.Enums;
 
 namespace Teste_T4L
 {
@@ -51,6 +52,8 @@ namespace Teste_T4L
             {
                 MessageBox.Show("Erro no Processo!!!");
             }
+
+            cbxUnidade.ItemsSource = Enum.GetValues(typeof(Unidade)); //Careegar o combox com as unidades
         }
 
         //Botao Cadastar
@@ -76,7 +79,7 @@ namespace Teste_T4L
                 {
 
                     ativo = 1;
-                    CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
+                    CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo, cbxUnidade.Text);
                     txtDesc.Clear();
                     txtCodBarra.Clear();
                     txtPrecoCusto.Clear();
@@ -85,7 +88,7 @@ namespace Teste_T4L
                 else
                 {
                     ativo = 0;
-                    CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo);
+                    CadastroProduto cadProd = new CadastroProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, DateTime.Now, ativo, cbxUnidade.Text);
                     txtDesc.Clear();
                     txtCodBarra.Clear();
                     txtPrecoCusto.Clear();
@@ -137,6 +140,19 @@ namespace Teste_T4L
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            
         }
     }
 }

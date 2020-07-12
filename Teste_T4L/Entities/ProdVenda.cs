@@ -11,7 +11,7 @@ namespace Teste_T4L
 {
     class ProdVenda
     {
-        public ProdVenda(string codProd, string quantidade, string precoVenda)
+        public ProdVenda(string codProd, string quantidade, string unidade, string precoVenda)
         {
             try
             {
@@ -26,8 +26,8 @@ namespace Teste_T4L
 
                 //Fazendo a conexão com o bd e passando a query Insert para inserir os dados no bd
                 Conexao conexao1 = new Conexao();
-                string insertQuery = "INSERT INTO venda_produto(codVenda, codProduto, precoVenda, quantidade) " +
-                                     "values(@codVenda, @codProduto, @precoVenda, @quantidade)";
+                string insertQuery = "INSERT INTO venda_produto(codVenda, codProduto, precoVenda, quantidade, unidade) " +
+                                     "values(@codVenda, @codProduto, @precoVenda, @quantidade, @unidade)";
                 MySqlCommand comando2 = new MySqlCommand(insertQuery, conexao1.conectar());
 
                 //Passando parametros para SQL
@@ -35,6 +35,7 @@ namespace Teste_T4L
                 comando2.Parameters.AddWithValue("@codProduto", int.Parse(codProd));
                 comando2.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
                 comando2.Parameters.AddWithValue("@quantidade", double.Parse(quantidade));
+                comando2.Parameters.AddWithValue(@unidade, unidade);
 
                 comando2.ExecuteNonQuery(); //Comando de execusao da query
 

@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
+using Teste_T4L.Entities.Enums;
 
 namespace Teste_T4L.Properties
 {
@@ -51,6 +52,8 @@ namespace Teste_T4L.Properties
             {
                 MessageBox.Show("Erro ao carregar combobox");
             }
+
+            cbxUnidade.ItemsSource = Enum.GetValues(typeof(Unidade)); //Carregar combobox com as unidades
         }
 
         //Botão canceçar para voltar a tela de consulta de itens
@@ -85,15 +88,14 @@ namespace Teste_T4L.Properties
                 {
 
                     ativo = 1;
-                    UpdateProduto upProd = new UpdateProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, ativo, codigo);
+                    UpdateProduto upProd = new UpdateProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, ativo, codigo, cbxUnidade.Text);
                     MessageBox.Show(upProd.msg);
                     
                 }
                 else
                 {
                     ativo = 0;
-                    UpdateProduto upProd = new UpdateProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, ativo, codigo);
-                    MessageBox.Show(upProd.msg);
+                    UpdateProduto upProd = new UpdateProduto(txtDesc.Text, txtCodBarra.Text, codGrupo, txtPrecoCusto.Text, txtPrecoVenda.Text, ativo, codigo, cbxUnidade.Text);
 
                 }
 
@@ -176,6 +178,18 @@ namespace Teste_T4L.Properties
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
         }
     }
 }

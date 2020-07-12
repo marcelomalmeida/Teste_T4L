@@ -11,14 +11,14 @@ namespace Teste_T4L
     {
         public string msg;
 
-        public UpdateProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, int ativo, string cod)
+        public UpdateProduto(string descricao, string codBarra, string codGrupo, string precoCusto, string precoVenda, int ativo, string cod, string unidade)
         {
             try
             {
                 //Fazendo a conexão com o bd e passando a query Update para atualizar os campos desejados
                 Conexao conexao = new Conexao();
                 string updateQuery = "UPDATE produto SET descricao = @descricao, codBarra = @codBarra, codGrupo = @codGrupo, precoCusto = @precoCusto, " +
-                                      "precoVenda = @precoVenda, ativo = @ativo WHERE cod = @cod";
+                                      "precoVenda = @precoVenda, ativo = @ativo, unidade = @unidade WHERE cod = @cod";
                 MySqlCommand comando = new MySqlCommand(updateQuery, conexao.conectar());
 
                 //Passando parametros para SQL
@@ -27,6 +27,7 @@ namespace Teste_T4L
                 comando.Parameters.AddWithValue("@precoCusto", double.Parse(precoCusto));
                 comando.Parameters.AddWithValue("@precoVenda", double.Parse(precoVenda));
                 comando.Parameters.AddWithValue("@ativo", ativo);
+                comando.Parameters.AddWithValue("unidade", unidade);
                 comando.Parameters.AddWithValue("@cod", int.Parse(cod));
 
                 //Testando o campo codigo de barras, se o mesmo não for preenchido ele será um null no bd
