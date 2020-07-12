@@ -53,7 +53,7 @@ namespace Teste_T4L
                 Conexao conexao = new Conexao();
                 string selectQuery = "SELECT PRODUTO.cod as Código, PRODUTO.descricao as Descrição, PRODUTO_GRUPO.nome as Grupo, " +
                                      "PRODUTO.precoCusto as PrecoCusto, PRODUTO.precoVenda as PrecoVenda, PRODUTO.ativo as Ativo FROM " +
-                                     "PRODUTO INNER JOIN PRODUTO_GRUPO ON PRODUTO.codGrupo = PRODUTO_GRUPO.cod";
+                                     "PRODUTO INNER JOIN PRODUTO_GRUPO ON PRODUTO.codGrupo = PRODUTO_GRUPO.cod ORDER BY 1";
                 DataTable table = new DataTable();
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(selectQuery, conexao.conectar());
                 dataAdapter.Fill(table);
@@ -127,6 +127,11 @@ namespace Teste_T4L
                 MessageBox.Show("Erro no processo!!!");
             }
 
+        }
+
+        private void btnMinimizar_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 

@@ -15,7 +15,7 @@ namespace Teste_T4L
         {
             try
             {
-                //Fazendo a conexão com o bd e passando a query Insert para inserir os campos desejados
+                //Fazendo a conexão com o bd e passando a query Select para pegar o ultimo código de venda gerado pelo bd 
                 Conexao conexao = new Conexao();
                 string selectMax = "SELECT MAX(cod) from venda";
                 MySqlCommand comando = new MySqlCommand(selectMax, conexao.conectar());
@@ -24,7 +24,7 @@ namespace Teste_T4L
                 string codVenda = reader.GetString(0);
                 conexao.desconectar();
 
-                //---------------------------------------------------------------------------------------------------
+                //Fazendo a conexão com o bd e passando a query Insert para inserir os dados no bd
                 Conexao conexao1 = new Conexao();
                 string insertQuery = "INSERT INTO venda_produto(codVenda, codProduto, precoVenda, quantidade) " +
                                      "values(@codVenda, @codProduto, @precoVenda, @quantidade)";

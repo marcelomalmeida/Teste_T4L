@@ -91,12 +91,13 @@
     <Compile Include="NovaVenda.xaml.cs">
       <DependentUpon>NovaVenda.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProdVenda.cs" />
+    <Compile Include="Entities\ProdVenda.cs" />
     <Compile Include="TelaLogin.xaml.cs">
       <DependentUpon>TelaLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateProduto.cs" />
-    <Compile Include="Venda.cs" />
+    <Compile Include="Entities\Enums\Unidade.cs" />
+    <Compile Include="Entities\UpdateProduto.cs" />
+    <Compile Include="Entities\Venda.cs" />
     <Page Include="ConsultaProdutos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,8 +110,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CadastroProduto.cs" />
-    <Compile Include="Conexao.cs" />
+    <Compile Include="Entities\CadastroProduto.cs" />
+    <Compile Include="Entities\Conexao.cs" />
     <Compile Include="ConsultaProdutos.xaml.cs">
       <DependentUpon>ConsultaProdutos.xaml</DependentUpon>
     </Compile>
@@ -171,11 +172,54 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="png-transparent-computer-icons-magnifier-magnifying-glass-magnifying-glass-text-share-icon-magnifier.png" />
+    <Resource Include="Imagens\Login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="kisspng-computer-icons-user-profile-login-avatar-yq-5b4930aa628c36.2515079915315232424037.png" />
+    <Resource Include="Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-x-mark-check-mark-desktop-wallpaper-clip-art-x-mark-5ac194d4bec907.7595189015226359887815.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-computer-icons-shopping-cart-software-purchasing-d-shopping-cart-5b1031ca110c53.9812129415277879780698.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-rewards-on-groceries-fetch-rewards-products-png-1045_837 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PngItem_4765430.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="clipart224447.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Save_37110.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Go-back-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="limpar-limpo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-computer-icons-scalable-vector-graphics-apple-icon-edit-png-icon-blue-pencil-5ab065d43019b7.7432604215215098441971.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-vector-graphics-graphic-design-clip-art-illustrati-remote-sales-masterclass-5b80ba6c2293e2.9658451715351629881416.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-computer-icons-checklist-image-logo-vector-graphic-check-checking-checklist-icons-583-free-vector-i-5c6b5c21e2fa69.3409128315505398099297.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kisspng-computer-icons-checklist-shopping-list-checklist-5ac04c5f185b18.9754289815225519030998.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="excluir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="lista-de-controle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

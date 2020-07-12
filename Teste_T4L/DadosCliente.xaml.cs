@@ -48,12 +48,19 @@ namespace Teste_T4L
             string str = txtDadoCPF.Text;
             int valid = str.Length;
 
-            if (valid == 11 ) //Validando numeros CPF
+            if (valid == 11) //Validando numeros CPF
             {
                 cpf = Convert.ToUInt64(str).ToString(@"000\.000\.000\-00"); //Formatando CPF
                 NovaVenda novaVenda = new NovaVenda();
                 novaVenda.Show();
                 
+                this.Close();
+            }
+            else if (str == "")
+            {
+                NovaVenda novaVenda = new NovaVenda();
+                novaVenda.Show();
+
                 this.Close();
             }
             else

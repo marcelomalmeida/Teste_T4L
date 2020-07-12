@@ -25,12 +25,14 @@ namespace Teste_T4L
         public TelaLogin()
         {
             InitializeComponent();
+            txtLogin.Focus();
         }
 
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                //Fazendo a conexão com o bd e passando a query Select para verificar se o usuario e senha digitados existem no bd
                 int i = 0;
                 Conexao conexao = new Conexao();
                 string selectQuery = "SELECT * FROM usuarios where usuario = '" + txtLogin.Text + "' and senha = '" + txtSenha.Password + "'";
@@ -60,6 +62,11 @@ namespace Teste_T4L
             {
                 MessageBox.Show("Erro ao se conectar com o Banco de Dados!!");
             }
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

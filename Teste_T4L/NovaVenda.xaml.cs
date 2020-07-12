@@ -194,6 +194,7 @@ namespace Teste_T4L
 
                         Total = Subtotal;
                         txtValorTotal.Text = Total.ToString(); //Adicionando o Subtotal para a caixa de texto
+                        txtCodigo.Focus();
 
                     }
                     catch (Exception)
@@ -228,12 +229,13 @@ namespace Teste_T4L
             {
                 if (MessageBox.Show("Deseja finalizar o pedido?", "Atenção", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    string obs = "Nada";
+                    string obs = txtObs.Text;
 
+                    //Passando os valores dos campos digitados para a classe Venda
                     Venda venda = new Venda(txtDocCliente.Text, txtNomeCliente.Text, obs, txtValorTotal.Text, DateTime.Now, txtCodigo.Text, txtQuantidade.Text);
                     DataRowView dr = dataGridPedVenda.SelectedItem as DataRowView;
 
-                    foreach (DataRow row in table.Rows)
+                    foreach (DataRow row in table.Rows)// Pegando os parametros de cada linha do novo pedido e passando para a classe ProdVenda
                     {
 
                         string codProd = row.ItemArray[1].ToString();
@@ -245,18 +247,32 @@ namespace Teste_T4L
                     }
 
                     MessageBox.Show("Venda finalizada com sucesso!!!");
-
-                    this.Close();
-
-                    MenuInicial menuinicial = new MenuInicial();
-                    menuinicial.Show();
                     
+
+                    //Iniciar uma nova venda
+                    if (MessageBox.Show("Deseja informar o nome e/ou CPF do cliente para a nova venda?", "Cliente", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // O Programa aceita pedido de venda sem dados do cliente
+                    {
+                        DadosCliente dadosCliente = new DadosCliente();
+                        dadosCliente.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        NovaVenda novaVenda = new NovaVenda();
+                        novaVenda.Show();
+                        this.Close();
+                    }
                 }
             }
             catch(Exception)
             {
                 MessageBox.Show("Erro no processo!!");
             }
+        }
+
+        private void btnMinimizar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

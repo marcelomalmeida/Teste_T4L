@@ -40,24 +40,31 @@ namespace Teste_T4L
 
         private void btnFechar_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            if (MessageBox.Show("Deseja encerrar o programa?", "Atenção!", MessageBoxButton.YesNo) == MessageBoxResult.Yes) 
+            {
+                this.Close();
+            }
         }
 
         private void btnNovoPedido_Click(object sender, RoutedEventArgs e)
         {
+            //Perguntando se deseja informar dados do cliente
             if (MessageBox.Show("Deseja informar o nome e/ou CPF do cliente?", "Cliente", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // O Programa aceita pedido de venda sem dados do cliente
             {
                 DadosCliente dadosCliente = new DadosCliente();
                 dadosCliente.Show();
-                this.Close();
             }
             else
             {
                 NovaVenda novaVenda = new NovaVenda();
                 novaVenda.Show();
-
                 this.Close();
             }
+        }
+
+        private void btnMinimizar_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

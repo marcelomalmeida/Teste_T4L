@@ -5,20 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Dados Cliente" Height="184.25" Width="235" WindowStyle="None" Background="#FFBFBFBF" WindowStartupLocation="CenterScreen">
+        Title="Dados Cliente" Height="500" Width="800" WindowStyle="None" Background="#FFBFBFBF" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,2" Background="#FFBFBFBF">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="223*"/>
-            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Inserir dados do cliente:" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="29" Width="168"/>
-        <Label Content="Nome:" HorizontalAlignment="Left" Margin="18,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.059,-1.958" Height="26" Width="45"/>
-        <Label Content="CPF:" HorizontalAlignment="Left" Margin="30,86,0,0" VerticalAlignment="Top" Height="26" Width="33"/>
-        <TextBox x:Name="txtDadoNome" HorizontalAlignment="Left" Height="23" Margin="76,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtDadoCPF" MaxLength="11" HorizontalAlignment="Left" Height="23" Margin="76,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtDadoCPF_PreviewTextInput" />
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="18,134,0,0" VerticalAlignment="Top" Width="75" Click="btnOK_Click"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="129,134,0,0" VerticalAlignment="Top" Width="76" Click="btnCancelar_Click"/>
-        <Label Content="Apenas Numeros" HorizontalAlignment="Left" Margin="73,103,0,0" VerticalAlignment="Top" FontSize="8" Opacity="0.7"/>
-
+        <Rectangle Fill="#FF323264" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="794" Grid.ColumnSpan="3" Margin="0,0,-4,0"/>
+        <Label Content="Inserir dados do cliente" HorizontalAlignment="Left" Margin="41,26,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Height="57" Width="360" Foreground="White"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="87,189,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.059,-1.958" Height="61" Width="131" FontSize="40"/>
+        <Label Content="CPF:" HorizontalAlignment="Left" Margin="122,279,0,0" VerticalAlignment="Top" Height="61" Width="96" FontSize="40" RenderTransformOrigin="0.656,-0.033"/>
+        <TextBox x:Name="txtDadoNome" HorizontalAlignment="Left" Height="40" Margin="245,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="473" FontSize="30" TabIndex="0"/>
+        <TextBox x:Name="txtDadoCPF" MaxLength="11" HorizontalAlignment="Left" Height="40" Margin="245,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="473" PreviewTextInput="txtDadoCPF_PreviewTextInput" FontSize="30" TabIndex="1"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="245,391,0,0" VerticalAlignment="Top" Width="217" Click="btnOK_Click" Height="53" Background="#FFFFB540" FontSize="25"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="501,391,0,0" VerticalAlignment="Top" Width="217" Click="btnCancelar_Click" Height="53" Background="#FFFFB940" FontSize="25"/>
+        <Label Content="Apenas Numeros" HorizontalAlignment="Left" Margin="245,330,0,0" VerticalAlignment="Top" FontSize="15" Opacity="0.7"/>
     </Grid>
 </Window>

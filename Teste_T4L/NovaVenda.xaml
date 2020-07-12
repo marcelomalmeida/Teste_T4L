@@ -5,29 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teste_T4L"
         mc:Ignorable="d"
-        Title="Nova Venda" Height="501" Width="576" WindowStartupLocation="CenterScreen">
-    <Grid x:Name="none" Margin="0,0,-22,2" Background="#FFBFBFBF">
-        <TextBox x:Name="txtNomeCliente" HorizontalAlignment="Left" Height="23" Margin="91,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
-        <TextBox x:Name="txtDocCliente" HorizontalAlignment="Left" Height="23" Margin="346,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
-        <Label Content="Nome:" HorizontalAlignment="Left" Margin="43,56,0,0" VerticalAlignment="Top"/>
-        <Label Content="CPF:" HorizontalAlignment="Left" Margin="308,56,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="Cliente" Height="80" Margin="604,2,-574,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
-        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="91,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" KeyDown="txtCodigo_KeyDown"/>
-        <Label Content="Código:" HorizontalAlignment="Left" Margin="37,139,0,0" VerticalAlignment="Top"/>
-        <Label Content="Quantidade:" HorizontalAlignment="Left" Margin="176,139,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="23" Margin="254,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" PreviewTextInput="txtQuantidade_PreviewTextInput" KeyDown="txtQuantidade_KeyDown"/>
-        <GroupBox Header="Produto" Height="80" Margin="604,122,-359,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
-        <UniformGrid Margin="20,194,337,22">
-            <DataGrid x:Name="dataGridPedVenda" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="535" Margin="6,0,-332,0">
-                <DataGrid.Columns>
-                </DataGrid.Columns>
-            </DataGrid>
-
+        Title="Nova Venda" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+    <Grid x:Name="none" Margin="0,-2,-2,0" Background="#FFBFBFBF">
+        <TextBox x:Name="txtNomeCliente" HorizontalAlignment="Left" Height="37" Margin="365,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499" IsEnabled="False" FontSize="20"/>
+        <TextBox x:Name="txtDocCliente" HorizontalAlignment="Left" Height="37" Margin="966,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" IsEnabled="False" FontSize="20"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="279,211,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="CPF:" HorizontalAlignment="Left" Margin="894,211,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="53" Margin="452,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" KeyDown="txtCodigo_KeyDown" FontSize="30"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="296,292,0,0" VerticalAlignment="Top" FontSize="35" FontWeight="Bold"/>
+        <Label Content="Quantidade:" HorizontalAlignment="Left" Margin="613,288,0,0" VerticalAlignment="Top" FontSize="35" FontWeight="Bold"/>
+        <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="53" Margin="842,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" PreviewTextInput="txtQuantidade_PreviewTextInput" KeyDown="txtQuantidade_KeyDown" FontSize="30"/>
+        <UniformGrid Margin="221,397,442,25">
+            <DataGrid x:Name="dataGridPedVenda" HorizontalAlignment="Left" Width="720" FontSize="15" Margin="0,-26,-23,0" GridLinesVisibility="None"/>
         </UniformGrid>
-        <TextBox x:Name="txtValorTotal" HorizontalAlignment="Left" Height="24" Margin="443,430,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="White" Background="White"/>
-        <Label Content="Valor Total:" HorizontalAlignment="Left" Margin="355,430,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="20,430,0,0" VerticalAlignment="Top" Width="75" Click="btnVoltar_Click"/>
-        <Button x:Name="btnFinalVenda" Content="Finalizar Venda" HorizontalAlignment="Left" Margin="114,430,0,0" VerticalAlignment="Top" Width="90" Click="btnFinalVenda_Click"/>
-
+        <Rectangle Fill="#FF323250" HorizontalAlignment="Stretch" Margin="-4,148,1159,-4" VerticalAlignment="Stretch" Width="225"/>
+        <Rectangle Fill="#FF323264" HorizontalAlignment="Stretch" Margin="-4,-3,0,610" VerticalAlignment="Stretch"/>
+        <Label Content="Nova Venda" HorizontalAlignment="Stretch" Margin="55,39,912,578" VerticalAlignment="Stretch" FontSize="50" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FFFFFBFB"/>
+        <Image HorizontalAlignment="Left" Height="86" Margin="68,211,0,0" VerticalAlignment="Top" Width="76" Source="Save_37110.png"/>
+        <Button x:Name="btnMinimizar" Content="" HorizontalAlignment="Left" Margin="1309,19,0,0" VerticalAlignment="Top" Width="29" Background="#FFFFFF47" Height="8" BorderBrush="{x:Null}" Click="btnMinimizar_Click"/>
+        <Image HorizontalAlignment="Left" Height="71" Margin="66,385,0,0" VerticalAlignment="Top" Width="80" Source="Go-back-icon.png"/>
+        <TextBox x:Name="txtValorTotal" HorizontalAlignment="Left" Height="50" Margin="1166,687,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" IsEnabled="False" BorderBrush="White" Background="White" FontSize="30" TextAlignment="Left"/>
+        <Label Content="Valor Total:" HorizontalAlignment="Left" Margin="966,684,0,0" VerticalAlignment="Top" FontSize="35" FontWeight="Bold"/>
+        <Button x:Name="btnVoltar" Content="Voltar" HorizontalAlignment="Left" Margin="55,468,0,0" VerticalAlignment="Top" Width="105" Click="btnVoltar_Click" Background="#FFFFB940" FontSize="20" Height="47"/>
+        <Button x:Name="btnFinalVenda" Content="Finalizar" HorizontalAlignment="Left" Margin="55,318,0,0" VerticalAlignment="Top" Width="105" Click="btnFinalVenda_Click" Height="47" FontSize="20" Background="#FFFFB940"/>
+        <GroupBox Header="Cliente" HorizontalAlignment="Left" Height="100" Margin="232,171,0,0" VerticalAlignment="Top" Width="1112" FontSize="20" FontWeight="Bold"/>
+        <TextBox x:Name="txtObs" HorizontalAlignment="Left" Height="348" Margin="966,320,0,0" TextWrapping="Wrap" Text="Observação:" VerticalAlignment="Top" Width="346" FontSize="20"/>
     </Grid>
 </Window>

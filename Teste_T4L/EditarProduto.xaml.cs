@@ -172,5 +172,10 @@ namespace Teste_T4L.Properties
             var textBox = sender as TextBox;
             e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
         }
+
+        private void btnMinimizar_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

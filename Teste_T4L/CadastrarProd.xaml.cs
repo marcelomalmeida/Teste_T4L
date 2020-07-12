@@ -29,7 +29,8 @@ namespace Teste_T4L
         {
             InitializeComponent();
             txtDesc.Focus();
-            // Carregar itens no combobox
+
+            // Carregar itens no combobox de Grupo de Produto
             try
             {
                 Conexao conexao = new Conexao();
@@ -97,6 +98,7 @@ namespace Teste_T4L
             catch(Exception)
             {
                 MessageBox.Show("Falta informação!!");
+                txtDesc.Focus();
             }
         }
 
@@ -107,6 +109,7 @@ namespace Teste_T4L
             txtCodBarra.Clear();
             txtPrecoCusto.Clear();
             txtPrecoVenda.Clear();
+            txtDesc.Focus();
         }
 
         //Botao para voltar ao Menu
@@ -129,6 +132,11 @@ namespace Teste_T4L
         {
             var textBox = sender as TextBox;
             e.Handled = Regex.IsMatch(e.Text, "[^0-9 ,]+");
+        }
+
+        private void btnMinimizar_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }
